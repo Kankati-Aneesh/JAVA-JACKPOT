@@ -1,0 +1,562 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.pg{font-family:var(--font-sans);padding:1rem 0}
+.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.25rem;border-bottom:.5px solid var(--color-border-tertiary);padding-bottom:.75rem}
+.tab{padding:6px 13px;border-radius:var(--border-radius-md);border:.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12.5px;cursor:pointer;transition:all .15s}
+.tab.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489;font-weight:500}
+.sec{display:none}.sec.on{display:block}
+.sec-title{font-size:17px;font-weight:500;color:var(--color-text-primary);margin-bottom:.2rem}
+.sec-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem}
+.explain{background:var(--color-background-secondary);border-left:3px solid #534AB7;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.875rem 1rem;font-size:14px;line-height:1.8;color:var(--color-text-primary);margin-bottom:1rem}
+.explain2{background:var(--color-background-secondary);border-left:3px solid #0F6E56;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.875rem 1rem;font-size:14px;line-height:1.8;color:var(--color-text-primary);margin-bottom:1rem}
+.code{background:var(--color-background-secondary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:.875rem 1rem;font-family:var(--font-mono);font-size:12px;line-height:1.75;color:var(--color-text-primary);margin:.75rem 0;overflow-x:auto;white-space:pre}
+.rule{background:#FAEEDA;border:.5px solid #FAC775;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13.5px;color:#633806;margin:.75rem 0;line-height:1.7}
+.tip{background:#E1F5EE;border:.5px solid #9FE1CB;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13.5px;color:#085041;margin:.75rem 0;line-height:1.7}
+.warn{background:#FAECE7;border:.5px solid #F0997B;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13.5px;color:#712B13;margin:.75rem 0;line-height:1.7}
+.card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.9rem 1.1rem;margin-bottom:.75rem}
+.q{font-size:14px;font-weight:500;color:var(--color-text-primary);cursor:pointer;display:flex;align-items:flex-start;gap:8px}
+.qt{flex:1}
+.chev{color:var(--color-text-secondary);font-size:13px;margin-top:2px;transition:transform .2s;flex-shrink:0}
+.chev.open{transform:rotate(180deg)}
+.ans{display:none;margin-top:.85rem;padding-top:.85rem;border-top:.5px solid var(--color-border-tertiary);font-size:13.5px;line-height:1.75;color:var(--color-text-primary)}
+.ans.show{display:block}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;font-weight:500;margin-right:4px;margin-bottom:3px}
+.bp{background:#EEEDFE;color:#3C3489}
+.bt{background:#E1F5EE;color:#085041}
+.ba{background:#FAEEDA;color:#633806}
+.bc{background:#FAECE7;color:#712B13}
+.bb{background:#E6F1FB;color:#0C447C}
+.step-row{display:flex;gap:8px;margin-bottom:.6rem;align-items:flex-start}
+.sn{min-width:22px;height:22px;border-radius:50%;background:#EEEDFE;color:#3C3489;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.st{font-size:13.5px;line-height:1.7;color:var(--color-text-primary)}
+.hl{color:#534AB7;font-weight:500}
+.kw{color:#534AB7}.cls{color:#085041}.cmt{color:var(--color-text-secondary)}.str{color:#712B13}.ann{color:#633806}
+.divider{border:none;border-top:.5px solid var(--color-border-tertiary);margin:1.25rem 0}
+.analogy-box{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem;margin:.75rem 0;display:flex;gap:12px;align-items:flex-start}
+.analogy-icon{font-size:24px;flex-shrink:0;margin-top:2px;color:#534AB7}
+.analogy-text{font-size:13.5px;line-height:1.75;color:var(--color-text-primary)}
+</style>
+
+<h2 class="sr-only">Complete Spring and Spring Boot interview preparation guide for Aneesh — covers core concepts, annotations, dependency injection, REST APIs, and 40 plus interview questions</h2>
+
+<div class="pg">
+<div class="tabs">
+  <div class="tab on" onclick="sw('intro')">What is Spring?</div>
+  <div class="tab" onclick="sw('di')">Dependency Injection</div>
+  <div class="tab" onclick="sw('annotations')">Annotations</div>
+  <div class="tab" onclick="sw('springboot')">Spring Boot</div>
+  <div class="tab" onclick="sw('rest')">REST APIs</div>
+  <div class="tab" onclick="sw('qs')">Interview Qs</div>
+</div>
+
+<!-- TAB 1: WHAT IS SPRING -->
+<div id="sec-intro" class="sec on">
+  <p class="sec-title">What is Spring? Start here.</p>
+  <p class="sec-sub">Before touching any code, understand WHY Spring exists and what problem it solves.</p>
+
+  <div class="explain">
+    Imagine you're building a restaurant. You need a chef, a waiter, and a cashier. Each of these people needs tools — the chef needs a knife and stove, the waiter needs an order pad, the cashier needs a register.<br><br>
+    Without Spring: <span class="hl">you (the programmer) manually create every person, buy them every tool, and wire them all together</span>. If the chef needs a knife, you write: Chef chef = new Chef(new Knife(), new Stove()).<br><br>
+    With Spring: <span class="hl">Spring is the restaurant manager</span>. You just say "I need a Chef." Spring knows a Chef needs a Knife and Stove, creates all of them, wires them together, and hands you a fully ready Chef. You don't worry about how.
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 290" role="img">
+    <title>Comparison of building an app without Spring versus with Spring</title>
+    <desc>Two columns. Left column shows the developer manually creating and wiring every object. Right column shows Spring Container handling all object creation and wiring automatically.</desc>
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+    <text class="ts" x="170" y="24" text-anchor="middle" fill="var(--color-text-secondary)">Without Spring — you do everything</text>
+    <text class="ts" x="510" y="24" text-anchor="middle" fill="var(--color-text-secondary)">With Spring — Spring does it for you</text>
+
+    <g class="c-coral">
+      <rect x="40" y="38" width="260" height="232" rx="12" stroke-width="0.5"/>
+    </g>
+    <text class="ts" x="170" y="64" text-anchor="middle" fill="#712B13">You write all of this yourself</text>
+
+    <g class="c-gray"><rect x="60" y="80" width="220" height="38" rx="6" stroke-width="0.5"/>
+    <text class="ts" x="170" y="99" text-anchor="middle" dominant-baseline="central">Knife k = new Knife()</text></g>
+    <g class="c-gray"><rect x="60" y="128" width="220" height="38" rx="6" stroke-width="0.5"/>
+    <text class="ts" x="170" y="147" text-anchor="middle" dominant-baseline="central">Stove s = new Stove()</text></g>
+    <g class="c-gray"><rect x="60" y="176" width="220" height="38" rx="6" stroke-width="0.5"/>
+    <text class="ts" x="170" y="195" text-anchor="middle" dominant-baseline="central">Chef c = new Chef(k, s)</text></g>
+    <g class="c-gray"><rect x="60" y="224" width="220" height="38" rx="6" stroke-width="0.5"/>
+    <text class="ts" x="170" y="243" text-anchor="middle" dominant-baseline="central">Waiter w = new Waiter(c)</text></g>
+
+    <g class="c-teal">
+      <rect x="380" y="38" width="260" height="232" rx="12" stroke-width="0.5"/>
+    </g>
+    <text class="ts" x="510" y="64" text-anchor="middle" fill="#085041">Spring handles all of this</text>
+
+    <g class="c-purple"><rect x="400" y="80" width="220" height="72" rx="6" stroke-width="0.5"/>
+    <text class="th" x="510" y="110" text-anchor="middle" dominant-baseline="central">Spring Container</text>
+    <text class="ts" x="510" y="132" text-anchor="middle" dominant-baseline="central">creates and wires everything</text></g>
+
+    <line x1="510" y1="152" x2="510" y2="180" stroke="#534AB7" stroke-width="1.5" marker-end="url(#ar)"/>
+
+    <g class="c-teal"><rect x="400" y="182" width="220" height="72" rx="6" stroke-width="0.5"/>
+    <text class="th" x="510" y="210" text-anchor="middle" dominant-baseline="central">Waiter (ready to use)</text>
+    <text class="ts" x="510" y="232" text-anchor="middle" dominant-baseline="central">chef already injected</text></g>
+  </svg>
+
+  <div class="divider"></div>
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">Three things Spring gives you:</div>
+
+  <div class="step-row"><span class="sn">1</span><span class="st"><span class="hl">IoC Container (Inversion of Control)</span> — Instead of you creating objects, you hand control over to Spring. Spring creates and manages all your objects (called Beans). This is the core idea.</span></div>
+  <div class="step-row"><span class="sn">2</span><span class="st"><span class="hl">Dependency Injection</span> — Spring automatically provides (injects) everything an object needs. A Chef that needs a Knife gets one automatically — you just declare the dependency.</span></div>
+  <div class="step-row"><span class="sn">3</span><span class="st"><span class="hl">Modules</span> — Spring has modules for web (Spring MVC), databases (Spring Data), security (Spring Security), etc. You pick what you need.</span></div>
+
+  <div class="tip">
+    <span style="font-weight:500">One sentence answer for the interview:</span> "Spring is a Java framework that manages object creation and wiring through Inversion of Control and Dependency Injection, so developers focus on business logic instead of boilerplate setup code."
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">What is a Bean?</div>
+
+  <div class="explain">
+    A <span class="hl">Bean</span> is simply any object that Spring creates and manages. When you mark a class with @Component or @Service, you're telling Spring: "please create and manage an object of this class." That managed object is called a Bean. Spring stores all Beans in its container (called the ApplicationContext) and injects them wherever needed.
+  </div>
+</div>
+
+<!-- TAB 2: DI -->
+<div id="sec-di" class="sec">
+  <p class="sec-title">Dependency Injection (DI)</p>
+  <p class="sec-sub">The most important concept in Spring. Understand this and everything else falls into place.</p>
+
+  <div class="explain">
+    <span class="hl">Dependency Injection means: instead of an object creating what it needs, someone else provides it.</span><br><br>
+    If a Chef needs a Knife, there are two ways:<br>
+    — Without DI: Chef itself creates a new Knife() inside its own constructor. Tightly coupled. Hard to test.<br>
+    — With DI: Someone from outside hands the Knife to the Chef. The Chef doesn't care WHO gives it the knife — just that it gets one. Spring is that "someone."
+  </div>
+
+  <div class="analogy-box">
+    <i class="ti ti-bulb analogy-icon" aria-hidden="true"></i>
+    <div class="analogy-text">
+      <span style="font-weight:500">Real world analogy:</span> You go to a hospital. You don't carry your own blood pressure machine, stethoscope, and medicine. The hospital provides (injects) everything the doctor needs. The doctor just does their job. That's DI — the professional gets what they need, provided by the environment, not by themselves.
+    </div>
+  </div>
+
+  <div class="code"><span class="cmt">// WITHOUT Dependency Injection — tightly coupled, hard to test</span>
+<span class="kw">class</span> <span class="cls">Chef</span> {
+    <span class="kw">private</span> <span class="cls">Knife</span> knife;
+
+    <span class="cls">Chef</span>() {
+        <span class="kw">this</span>.knife = <span class="kw">new</span> <span class="cls">Knife</span>(); <span class="cmt">// Chef is stuck with THIS specific Knife forever</span>
+    }                              <span class="cmt">// Can't swap it. Can't test with a fake knife.</span>
+}
+
+<span class="cmt">// WITH Dependency Injection — loosely coupled, easy to test</span>
+<span class="kw">class</span> <span class="cls">Chef</span> {
+    <span class="kw">private</span> <span class="cls">Knife</span> knife;
+
+    <span class="cls">Chef</span>(<span class="cls">Knife</span> knife) {          <span class="cmt">// Knife is GIVEN to Chef from outside</span>
+        <span class="kw">this</span>.knife = knife;       <span class="cmt">// Chef doesn't care where it came from</span>
+    }
+}
+
+<span class="cmt">// Spring does this automatically — you never write "new" for your services</span></div>
+
+  <div class="divider"></div>
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">The 3 types of Dependency Injection in Spring</div>
+
+  <div class="step-row"><span class="sn">1</span>
+    <span class="st"><span class="hl">Constructor Injection</span> — dependencies passed through the constructor. This is the recommended way. It makes dependencies clear and the object is always fully initialized.<br>
+    <code style="font-size:12px;background:var(--color-background-secondary);padding:1px 6px;border-radius:4px">@Autowired Chef(Knife knife) { this.knife = knife; }</code>
+    </span>
+  </div>
+  <div class="step-row"><span class="sn">2</span>
+    <span class="st"><span class="hl">Setter Injection</span> — Spring calls a setter method to provide the dependency. Used when the dependency is optional.<br>
+    <code style="font-size:12px;background:var(--color-background-secondary);padding:1px 6px;border-radius:4px">@Autowired void setKnife(Knife knife) { this.knife = knife; }</code>
+    </span>
+  </div>
+  <div class="step-row"><span class="sn">3</span>
+    <span class="st"><span class="hl">Field Injection</span> — put @Autowired directly on the field. Simplest to write but least recommended (hard to test).<br>
+    <code style="font-size:12px;background:var(--color-background-secondary);padding:1px 6px;border-radius:4px">@Autowired private Knife knife;</code>
+    </span>
+  </div>
+
+  <div class="code"><span class="cmt">// Constructor Injection — RECOMMENDED</span>
+<span class="ann">@Service</span>
+<span class="kw">class</span> <span class="cls">ChefService</span> {
+    <span class="kw">private final</span> <span class="cls">KnifeService</span> knifeService;
+
+    <span class="ann">@Autowired</span>  <span class="cmt">// Spring injects KnifeService here automatically</span>
+    <span class="cls">ChefService</span>(<span class="cls">KnifeService</span> knifeService) {
+        <span class="kw">this</span>.knifeService = knifeService;
+    }
+}
+
+<span class="cmt">// Field Injection — common in tutorials, but less ideal</span>
+<span class="ann">@Service</span>
+<span class="kw">class</span> <span class="cls">ChefService</span> {
+    <span class="ann">@Autowired</span>
+    <span class="kw">private</span> <span class="cls">KnifeService</span> knifeService;  <span class="cmt">// Spring injects this field directly</span>
+}</div>
+
+  <div class="rule">
+    <span style="font-weight:500">Why DI matters for interviews:</span> It makes code loosely coupled (easy to change one part without breaking others), testable (you can inject a fake/mock object for testing), and maintainable. These are the exact words interviewers want to hear.
+  </div>
+</div>
+
+<!-- TAB 3: ANNOTATIONS -->
+<div id="sec-annotations" class="sec">
+  <p class="sec-title">Spring annotations — the most asked topic</p>
+  <p class="sec-sub">Annotations are instructions you give Spring by putting @Something above your class or method. Know these 10 cold.</p>
+
+  <div class="explain">
+    An annotation is just a label. When you write @Service above a class, you're telling Spring: "this class is a service — please manage it as a Bean." Spring reads these annotations when the app starts and sets everything up automatically.
+  </div>
+
+  <div id="ann-list"></div>
+
+  <div class="divider"></div>
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">See them all working together:</div>
+  <div class="code"><span class="cmt">// A complete mini Spring application — 3 layers</span>
+
+<span class="cmt">// 1. Repository layer — talks to database</span>
+<span class="ann">@Repository</span>
+<span class="kw">public class</span> <span class="cls">UserRepository</span> {
+    <span class="kw">public</span> <span class="cls">User</span> findById(<span class="kw">int</span> id) { <span class="cmt">/* DB query */</span> <span class="kw">return</span> user; }
+}
+
+<span class="cmt">// 2. Service layer — business logic</span>
+<span class="ann">@Service</span>
+<span class="kw">public class</span> <span class="cls">UserService</span> {
+    <span class="ann">@Autowired</span>
+    <span class="kw">private</span> <span class="cls">UserRepository</span> userRepo; <span class="cmt">// Spring injects this</span>
+
+    <span class="kw">public</span> <span class="cls">User</span> getUser(<span class="kw">int</span> id) {
+        <span class="kw">return</span> userRepo.findById(id);  <span class="cmt">// business logic here</span>
+    }
+}
+
+<span class="cmt">// 3. Controller layer — handles HTTP requests</span>
+<span class="ann">@RestController</span>
+<span class="ann">@RequestMapping</span>(<span class="str">"/users"</span>)
+<span class="kw">public class</span> <span class="cls">UserController</span> {
+    <span class="ann">@Autowired</span>
+    <span class="kw">private</span> <span class="cls">UserService</span> userService; <span class="cmt">// Spring injects this</span>
+
+    <span class="ann">@GetMapping</span>(<span class="str">"/{id}"</span>)
+    <span class="kw">public</span> <span class="cls">User</span> getUser(<span class="ann">@PathVariable</span> <span class="kw">int</span> id) {
+        <span class="kw">return</span> userService.getUser(id); <span class="cmt">// delegates to service</span>
+    }
+}</div>
+</div>
+
+<!-- TAB 4: SPRING BOOT -->
+<div id="sec-springboot" class="sec">
+  <p class="sec-title">Spring Boot — Spring but easier</p>
+  <p class="sec-sub">Spring Boot is not a replacement for Spring — it's Spring with the setup already done for you.</p>
+
+  <div class="explain">
+    Setting up a Spring application from scratch used to require writing hundreds of lines of configuration — XML files, setting up a web server, configuring databases, connecting everything. It took hours just to say "hello world."<br><br>
+    <span class="hl">Spring Boot removes ALL of that setup.</span> It provides smart defaults, auto-configuration, and an embedded web server. You go from zero to a running web app in minutes.
+  </div>
+
+  <div class="analogy-box">
+    <i class="ti ti-building analogy-icon" aria-hidden="true"></i>
+    <div class="analogy-text">
+      <span style="font-weight:500">Analogy:</span> Spring is like buying land and building a house from scratch — choosing bricks, laying foundation, wiring electricity. Spring Boot is like moving into a furnished apartment — everything is already set up, you just bring your stuff (your business logic) and start living.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="step-row"><span class="sn">1</span><span class="st"><span class="hl">Auto-configuration</span> — Spring Boot detects what libraries you have and configures them automatically. Add a database driver? Spring Boot automatically sets up the connection pool. Add a web library? It starts a web server. You don't write any config.</span></div>
+  <div class="step-row"><span class="sn">2</span><span class="st"><span class="hl">Embedded server</span> — Spring Boot includes a Tomcat web server inside your app. You just run your Java program like any normal main() method — no separate server installation needed.</span></div>
+  <div class="step-row"><span class="sn">3</span><span class="st"><span class="hl">Starter dependencies</span> — Instead of hunting for 10 individual libraries, you add one "starter" and Spring Boot pulls in everything you need. spring-boot-starter-web gives you web + JSON + Tomcat in one line.</span></div>
+  <div class="step-row"><span class="sn">4</span><span class="st"><span class="hl">Production-ready</span> — Spring Boot Actuator gives you health checks, metrics, and monitoring out of the box at /actuator/health.</span></div>
+
+  <div class="code"><span class="cmt">// A complete Spring Boot REST app in ~15 lines</span>
+
+<span class="ann">@SpringBootApplication</span>  <span class="cmt">// enables everything — component scan + auto-config</span>
+<span class="kw">public class</span> <span class="cls">MyApp</span> {
+    <span class="kw">public static void</span> main(<span class="cls">String</span>[] args) {
+        SpringApplication.run(<span class="cls">MyApp</span>.<span class="kw">class</span>, args); <span class="cmt">// starts the embedded server</span>
+    }
+}
+
+<span class="ann">@RestController</span>
+<span class="kw">public class</span> <span class="cls">HelloController</span> {
+
+    <span class="ann">@GetMapping</span>(<span class="str">"/hello"</span>)
+    <span class="kw">public</span> <span class="cls">String</span> hello() {
+        <span class="kw">return</span> <span class="str">"Hello World!"</span>;  <span class="cmt">// visit localhost:8080/hello and see this</span>
+    }
+}
+
+<span class="cmt">// That's it. A fully running web server serving HTTP requests.</span>
+<span class="cmt">// No XML. No server setup. No configuration files.</span></div>
+
+  <div class="tip">
+    <span style="font-weight:500">Interview one-liner:</span> "Spring Boot is an opinionated extension of Spring that provides auto-configuration, embedded servers, and starter dependencies to eliminate boilerplate setup. It lets you build production-ready Spring applications with minimal configuration."
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">What @SpringBootApplication actually does:</div>
+
+  <div class="step-row"><span class="sn">1</span><span class="st"><span class="hl">@SpringBootConfiguration</span> — marks this as a Spring configuration class (like @Configuration).</span></div>
+  <div class="step-row"><span class="sn">2</span><span class="st"><span class="hl">@EnableAutoConfiguration</span> — tells Spring Boot to automatically configure everything based on what's in your classpath.</span></div>
+  <div class="step-row"><span class="sn">3</span><span class="st"><span class="hl">@ComponentScan</span> — scans the current package and all sub-packages for @Component, @Service, @Controller, @Repository classes and registers them as Beans.</span></div>
+
+  <div class="rule">@SpringBootApplication = @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan. That's the most common "trick" interview question about this annotation.</div>
+</div>
+
+<!-- TAB 5: REST APIs -->
+<div id="sec-rest" class="sec">
+  <p class="sec-title">Building REST APIs with Spring Boot</p>
+  <p class="sec-sub">This is what you'll most likely do day-to-day. Understand every line of this.</p>
+
+  <div class="explain">
+    A <span class="hl">REST API</span> is a way for applications to communicate over HTTP. Your Spring Boot app exposes URLs (endpoints) that other apps or frontends can call. Each URL does something: return data, create something, update something, delete something.<br><br>
+    HTTP methods map to actions: <span class="hl">GET = read, POST = create, PUT = update, DELETE = delete.</span>
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 220" role="img">
+    <title>REST API request flow from client through controller to service to repository and back</title>
+    <desc>Four boxes in sequence: Client sends request to Controller, Controller calls Service, Service calls Repository, Repository talks to Database. Response flows back through the same path.</desc>
+    <defs><marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+    <g class="c-gray"><rect x="30" y="80" width="100" height="60" rx="8" stroke-width="0.5"/>
+    <text class="th" x="80" y="105" text-anchor="middle" dominant-baseline="central">Client</text>
+    <text class="ts" x="80" y="123" text-anchor="middle" dominant-baseline="central">browser/app</text></g>
+
+    <line x1="132" y1="110" x2="156" y2="110" stroke="#534AB7" stroke-width="1.5" marker-end="url(#ar3)"/>
+    <text class="ts" x="144" y="103" text-anchor="middle" fill="var(--color-text-secondary)">HTTP</text>
+
+    <g class="c-purple"><rect x="158" y="80" width="120" height="60" rx="8" stroke-width="0.5"/>
+    <text class="th" x="218" y="105" text-anchor="middle" dominant-baseline="central">@RestController</text>
+    <text class="ts" x="218" y="123" text-anchor="middle" dominant-baseline="central">handles routes</text></g>
+
+    <line x1="280" y1="110" x2="304" y2="110" stroke="#534AB7" stroke-width="1.5" marker-end="url(#ar3)"/>
+
+    <g class="c-teal"><rect x="306" y="80" width="110" height="60" rx="8" stroke-width="0.5"/>
+    <text class="th" x="361" y="105" text-anchor="middle" dominant-baseline="central">@Service</text>
+    <text class="ts" x="361" y="123" text-anchor="middle" dominant-baseline="central">business logic</text></g>
+
+    <line x1="418" y1="110" x2="442" y2="110" stroke="#534AB7" stroke-width="1.5" marker-end="url(#ar3)"/>
+
+    <g class="c-amber"><rect x="444" y="80" width="110" height="60" rx="8" stroke-width="0.5"/>
+    <text class="th" x="499" y="105" text-anchor="middle" dominant-baseline="central">@Repository</text>
+    <text class="ts" x="499" y="123" text-anchor="middle" dominant-baseline="central">data access</text></g>
+
+    <line x1="556" y1="110" x2="580" y2="110" stroke="#534AB7" stroke-width="1.5" marker-end="url(#ar3)"/>
+
+    <g class="c-gray"><rect x="582" y="80" width="78" height="60" rx="8" stroke-width="0.5"/>
+    <text class="th" x="621" y="105" text-anchor="middle" dominant-baseline="central">Database</text>
+    <text class="ts" x="621" y="123" text-anchor="middle" dominant-baseline="central">MySQL etc.</text></g>
+
+    <text class="ts" x="340" y="175" text-anchor="middle" fill="var(--color-text-secondary)">Response flows back through the same layers</text>
+    <line x1="556" y1="185" x2="132" y2="185" stroke="#9FE1CB" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ar3)"/>
+  </svg>
+
+  <div class="code"><span class="cmt">// Full CRUD REST API for a User resource</span>
+
+<span class="ann">@RestController</span>
+<span class="ann">@RequestMapping</span>(<span class="str">"/api/users"</span>)
+<span class="kw">public class</span> <span class="cls">UserController</span> {
+
+    <span class="ann">@Autowired</span>
+    <span class="kw">private</span> <span class="cls">UserService</span> userService;
+
+    <span class="cmt">// GET /api/users — return all users</span>
+    <span class="ann">@GetMapping</span>
+    <span class="kw">public</span> <span class="cls">List</span>&lt;<span class="cls">User</span>&gt; getAllUsers() {
+        <span class="kw">return</span> userService.getAllUsers();
+    }
+
+    <span class="cmt">// GET /api/users/5 — return user with id 5</span>
+    <span class="ann">@GetMapping</span>(<span class="str">"/{id}"</span>)
+    <span class="kw">public</span> <span class="cls">User</span> getUserById(<span class="ann">@PathVariable</span> <span class="kw">int</span> id) {
+        <span class="kw">return</span> userService.getUser(id);
+    }
+
+    <span class="cmt">// POST /api/users — create a new user</span>
+    <span class="ann">@PostMapping</span>
+    <span class="kw">public</span> <span class="cls">User</span> createUser(<span class="ann">@RequestBody</span> <span class="cls">User</span> user) {
+        <span class="kw">return</span> userService.createUser(user); <span class="cmt">// user data comes in as JSON</span>
+    }
+
+    <span class="cmt">// PUT /api/users/5 — update user with id 5</span>
+    <span class="ann">@PutMapping</span>(<span class="str">"/{id}"</span>)
+    <span class="kw">public</span> <span class="cls">User</span> updateUser(<span class="ann">@PathVariable</span> <span class="kw">int</span> id, <span class="ann">@RequestBody</span> <span class="cls">User</span> user) {
+        <span class="kw">return</span> userService.updateUser(id, user);
+    }
+
+    <span class="cmt">// DELETE /api/users/5 — delete user with id 5</span>
+    <span class="ann">@DeleteMapping</span>(<span class="str">"/{id}"</span>)
+    <span class="kw">public void</span> deleteUser(<span class="ann">@PathVariable</span> <span class="kw">int</span> id) {
+        userService.deleteUser(id);
+    }
+}</div>
+
+  <div class="tip"><span style="font-weight:500">@PathVariable vs @RequestParam:</span> @PathVariable pulls from the URL path: /users/5 → id=5. @RequestParam pulls from query string: /users?name=Aneesh → name="Aneesh".</div>
+  <div class="tip"><span style="font-weight:500">@RequestBody:</span> When someone sends JSON data in a POST/PUT request, @RequestBody tells Spring to automatically convert that JSON into a Java object. Spring uses Jackson (a JSON library) to do this automatically.</div>
+</div>
+
+<!-- TAB 6: QUESTIONS -->
+<div id="sec-qs" class="sec">
+  <p class="sec-title">Interview questions — Spring & Spring Boot</p>
+  <p class="sec-sub">40+ most asked questions with full answers. Click to reveal.</p>
+  <div id="qs-container"></div>
+</div>
+</div>
+
+<script>
+const anns=[
+  {name:'@Component',color:'bp',desc:'Marks a class as a Spring Bean. Spring will create and manage an instance of it. The most generic annotation — use when nothing more specific fits.',code:`@Component
+class Knife {
+    void cut() { System.out.println("Cutting!"); }
+}`},
+  {name:'@Service',color:'bt',desc:'A specialisation of @Component. Use for classes that contain business logic (the "thinking" layer of your app). Functionally same as @Component but makes intent clear.',code:`@Service
+class UserService {
+    public User getUser(int id) { /* business logic */ }
+}`},
+  {name:'@Repository',color:'ba',desc:'A specialisation of @Component. Use for classes that talk to the database. Spring also adds special database exception translation for @Repository classes.',code:`@Repository
+class UserRepository {
+    public User findById(int id) { /* DB query */ }
+}`},
+  {name:'@Controller / @RestController',color:'bc',desc:'@Controller handles HTTP requests and returns a view (HTML page). @RestController = @Controller + @ResponseBody — it returns data (JSON/XML) directly, not a page. For APIs, always use @RestController.',code:`@RestController
+class UserController {
+    @GetMapping("/users")
+    public List<User> getUsers() { return userList; }
+    // Spring converts List<User> to JSON automatically
+}`},
+  {name:'@Autowired',color:'bp',desc:'Tells Spring to inject a dependency here. Spring finds the right Bean from its container and provides it. Can be on a field, constructor, or setter.',code:`@Service
+class ChefService {
+    @Autowired
+    private KnifeService knife; // Spring injects this automatically
+}`},
+  {name:'@RequestMapping / @GetMapping / @PostMapping',color:'bt',desc:'@RequestMapping maps a URL path to a class or method. @GetMapping, @PostMapping, @PutMapping, @DeleteMapping are shortcuts for specific HTTP methods.',code:`@RestController
+@RequestMapping("/api")       // base path for all methods in this class
+class ApiController {
+    @GetMapping("/users")     // handles GET /api/users
+    public List<User> list() { ... }
+
+    @PostMapping("/users")    // handles POST /api/users
+    public User create(@RequestBody User u) { ... }
+}`},
+  {name:'@PathVariable & @RequestParam',color:'ba',desc:'@PathVariable extracts values from the URL path. @RequestParam extracts values from the query string (?key=value).',code:`@GetMapping("/users/{id}")
+public User getById(@PathVariable int id) { ... }
+// GET /users/5  → id = 5
+
+@GetMapping("/search")
+public List<User> search(@RequestParam String name) { ... }
+// GET /search?name=Aneesh  → name = "Aneesh"`},
+  {name:'@RequestBody & @ResponseBody',color:'bc',desc:'@RequestBody: converts incoming JSON (in POST/PUT body) into a Java object automatically. @ResponseBody: converts a Java return value into JSON. @RestController includes @ResponseBody by default.',code:`@PostMapping("/users")
+public User create(@RequestBody User user) {
+    // user object is auto-created from the JSON body sent in the request
+    return userService.save(user);
+    // the returned User object is auto-converted to JSON response
+}`},
+  {name:'@SpringBootApplication',color:'bp',desc:'Put on the main class. It combines @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan. This single annotation starts the entire Spring Boot magic.',code:`@SpringBootApplication
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+}`},
+  {name:'@Configuration & @Bean',color:'bt',desc:'@Configuration marks a class as a source of Bean definitions. @Bean on a method means Spring will call that method and register what it returns as a Bean — used when you need to manually configure how a Bean is created.',code:`@Configuration
+class AppConfig {
+    @Bean
+    public DataSource dataSource() {
+        // create and configure a DataSource object
+        return new HikariDataSource(config);
+    }
+    // Spring will call this method and manage the returned DataSource
+}`}
+];
+
+function renderAnns(){
+  const c=document.getElementById('ann-list');
+  if(!c)return;
+  c.innerHTML=anns.map((a,i)=>`
+    <div class="card">
+      <div class="q" onclick="tog('a${i}')">
+        <i class="ti ti-at" aria-hidden="true" style="color:#534AB7;font-size:14px;margin-top:2px;flex-shrink:0"></i>
+        <span class="qt"><span class="badge ${a.color}">${a.name}</span></span>
+        <i class="ti ti-chevron-down chev" id="a${i}-chev" aria-hidden="true"></i>
+      </div>
+      <div class="ans" id="a${i}-ans">
+        <div style="margin-bottom:.6rem">${a.desc}</div>
+        <div class="code">${a.code}</div>
+      </div>
+    </div>`).join('');
+}
+
+const interviewQs=[
+  {section:'Spring Core',color:'bp',qs:[
+    {q:'What is the Spring Framework? Why is it used?',ans:'Spring is a Java framework that provides Inversion of Control (IoC) and Dependency Injection (DI) to manage object creation and wiring. It is used because it removes boilerplate code, makes applications loosely coupled, easier to test, and modular. It also provides modules for web (Spring MVC), data, security, and more.'},
+    {q:'What is Inversion of Control (IoC)?',ans:'IoC means the control of creating and managing objects is inverted — instead of the developer creating objects manually with "new", Spring takes control and creates, configures, and manages them. The developer just declares what they need. The IoC container (ApplicationContext) is what holds and manages all these objects (Beans).'},
+    {q:'What is a Spring Bean?',ans:'A Bean is any Java object that Spring creates and manages inside its IoC container. When you annotate a class with @Component, @Service, @Repository, or @Controller, Spring creates an instance of that class and manages its lifecycle. You can get a Bean injected anywhere using @Autowired.'},
+    {q:'What is the difference between @Component, @Service, and @Repository?',ans:'All three are specialisations of @Component — they all register the class as a Spring Bean. The difference is semantic (meaning, not behavior): @Component is generic, @Service is for business logic classes, @Repository is for data-access classes. @Repository also adds exception translation for database errors. Interviewers want to hear that functionally they are the same but semantically different.'},
+    {q:'What is the ApplicationContext?',ans:'The ApplicationContext is the Spring IoC container — it holds and manages all the Beans. When your Spring Boot app starts, it creates an ApplicationContext, scans for annotated classes, creates Bean instances, injects dependencies, and keeps them ready. You almost never interact with it directly in Spring Boot — it all happens automatically.'},
+    {q:'What is Bean scope? What are the types?',ans:'Bean scope defines how many instances Spring creates. Singleton (default): only one instance for the entire application — every class that needs this Bean gets the same one. Prototype: a new instance is created every time someone requests it. Request: one per HTTP request (web apps). Session: one per user session (web apps). In most apps you will use Singleton.'},
+  ]},
+  {section:'Dependency Injection',color:'bt',qs:[
+    {q:'What is Dependency Injection? Why is it important?',ans:'DI is a design pattern where an object\'s dependencies (things it needs to work) are provided from outside rather than created by the object itself. It\'s important because it makes code loosely coupled (easy to change parts independently), testable (you can inject mock objects in tests), and maintainable. Spring implements DI through its IoC container.'},
+    {q:'What are the types of Dependency Injection in Spring?',ans:'Three types: (1) Constructor Injection — dependency provided via constructor. Recommended because it makes dependencies mandatory and the object is always complete. (2) Setter Injection — Spring calls a setter method. Used for optional dependencies. (3) Field Injection — @Autowired directly on the field. Simplest but least recommended because it hides dependencies and is hard to test.'},
+    {q:'What is @Autowired?',ans:'@Autowired tells Spring to inject a matching Bean from the IoC container into this field, constructor, or setter. Spring looks for a Bean of the matching type and injects it automatically. If there are multiple matching Beans, use @Qualifier to specify which one. If no matching Bean is found, Spring throws NoSuchBeanDefinitionException.'},
+    {q:'What is @Qualifier?',ans:'@Qualifier is used with @Autowired when there are multiple Beans of the same type. It lets you specify which one to inject by name. Example: if you have two implementations of PaymentService — CreditCardService and UPIService — you use @Qualifier("creditCardService") to tell Spring which one to inject.'},
+  ]},
+  {section:'Spring Boot',color:'ba',qs:[
+    {q:'What is Spring Boot? How is it different from Spring?',ans:'Spring Boot is an opinionated extension of Spring that eliminates configuration boilerplate. Spring requires you to manually configure everything — web server, data source, JSON converters. Spring Boot provides auto-configuration (detects what you have and configures it), embedded servers (Tomcat included), and starter dependencies (one dependency pulls in everything you need). Spring Boot makes you productive in minutes vs hours with plain Spring.'},
+    {q:'What does @SpringBootApplication do?',ans:'It\'s a convenience annotation combining three: @SpringBootConfiguration (marks this as a configuration class), @EnableAutoConfiguration (activates Spring Boot\'s auto-configuration based on classpath), and @ComponentScan (scans the current package and sub-packages for Spring components). This is a common interview trick question — know the three it combines.'},
+    {q:'What is auto-configuration in Spring Boot?',ans:'Auto-configuration means Spring Boot automatically configures your application based on the libraries on the classpath. If it sees spring-boot-starter-data-jpa, it automatically configures a DataSource, EntityManagerFactory, and TransactionManager. If it sees H2 database, it configures an in-memory database. You can always override these defaults in application.properties.'},
+    {q:'What is application.properties / application.yml?',ans:'Configuration file where you set properties for your Spring Boot app. Things like database URL, username, password, server port, logging level. Spring Boot reads this file on startup. Example: server.port=8081 changes the port. spring.datasource.url=jdbc:mysql://localhost/mydb sets the DB connection. You can also use application.yml which uses YAML format instead of key=value.'},
+    {q:'What is Spring Boot Actuator?',ans:'Actuator adds production-ready features to your app — health checks, metrics, info, and monitoring endpoints out of the box. After adding the actuator dependency, you get endpoints like /actuator/health (is the app running?), /actuator/metrics (memory, CPU, request counts), /actuator/info (app version info). Very useful in production for monitoring.'},
+    {q:'What is an embedded server in Spring Boot?',ans:'Spring Boot includes a web server (Tomcat by default) embedded inside the application JAR. You don\'t install or configure a separate web server — you just run your Java app with java -jar app.jar and the server starts automatically. You can switch to Jetty or Undertow by excluding Tomcat and adding the alternative dependency.'},
+  ]},
+  {section:'REST API',color:'bc',qs:[
+    {q:'What is a REST API?',ans:'REST (Representational State Transfer) is an architectural style for building APIs over HTTP. A REST API exposes resources (like users, products, orders) via URLs and uses HTTP methods to perform operations: GET (read), POST (create), PUT (update), DELETE (delete). It\'s stateless — each request is independent, the server doesn\'t remember previous requests. Spring Boot makes building REST APIs extremely simple with @RestController.'},
+    {q:'What is the difference between @Controller and @RestController?',ans:'@Controller is used for traditional web apps that return HTML views (like a Thymeleaf template). @RestController = @Controller + @ResponseBody. It automatically converts every return value to JSON/XML and sends it as the HTTP response body. For building APIs, always use @RestController.'},
+    {q:'What is the difference between @PathVariable and @RequestParam?',ans:'@PathVariable extracts a value from the URL path: @GetMapping("/users/{id}") with @PathVariable int id gives you the id from /users/5. @RequestParam extracts from the query string: @GetMapping("/search") with @RequestParam String name gives you "Aneesh" from /search?name=Aneesh. Use @PathVariable for resource IDs, @RequestParam for optional filters or search terms.'},
+    {q:'What does @RequestBody do?',ans:'@RequestBody tells Spring to convert the JSON body of an HTTP POST/PUT request into a Java object automatically. Spring uses Jackson library under the hood. If someone sends {"name":"Aneesh","age":22} in the request body, @RequestBody User user gives you a Java User object with those fields populated — no manual parsing needed.'},
+    {q:'What are HTTP status codes? Which ones matter for REST?',ans:'Status codes tell the client what happened. Most important: 200 OK (success), 201 Created (new resource created via POST), 400 Bad Request (client sent invalid data), 401 Unauthorized (not logged in), 403 Forbidden (logged in but not allowed), 404 Not Found (resource doesn\'t exist), 500 Internal Server Error (something broke on server). In Spring, use ResponseEntity to return a specific status code.'},
+  ]},
+];
+
+function renderQs(){
+  const c=document.getElementById('qs-container');
+  if(!c)return;
+  let html='';
+  let qi=0;
+  interviewQs.forEach(section=>{
+    html+=`<div style="font-size:13px;font-weight:500;margin:1.25rem 0 .5rem;display:flex;align-items:center;gap:8px"><span class="badge ${section.color}">${section.section}</span></div>`;
+    section.qs.forEach(item=>{
+      const id='iq'+qi;
+      html+=`<div class="card">
+        <div class="q" onclick="tog('${id}')">
+          <i class="ti ti-help-circle" aria-hidden="true" style="color:#534AB7;font-size:14px;margin-top:2px;flex-shrink:0"></i>
+          <span class="qt">${item.q}</span>
+          <i class="ti ti-chevron-down chev" id="${id}-chev" aria-hidden="true"></i>
+        </div>
+        <div class="ans" id="${id}-ans">${item.ans}</div>
+      </div>`;
+      qi++;
+    });
+  });
+  c.innerHTML=html;
+}
+
+function tog(id){
+  const ans=document.getElementById(id+'-ans');
+  const chev=document.getElementById(id+'-chev');
+  if(!ans)return;
+  ans.classList.toggle('show');
+  if(chev)chev.classList.toggle('open');
+}
+
+function sw(name){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('sec-'+name).classList.add('on');
+  const m={intro:0,di:1,annotations:2,springboot:3,rest:4,qs:5};
+  document.querySelectorAll('.tab')[m[name]].classList.add('on');
+}
+
+renderAnns();
+renderQs();
+</script>

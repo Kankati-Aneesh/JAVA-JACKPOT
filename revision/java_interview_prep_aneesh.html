@@ -1,0 +1,694 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.pg{padding:1rem 0;font-family:var(--font-sans)}
+.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.25rem;border-bottom:0.5px solid var(--color-border-tertiary);padding-bottom:.75rem}
+.tab{padding:6px 13px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12.5px;cursor:pointer;transition:all .15s}
+.tab.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489;font-weight:500}
+.sec{display:none}.sec.on{display:block}
+.sec-title{font-size:17px;font-weight:500;color:var(--color-text-primary);margin-bottom:.2rem}
+.sec-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:1.1rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.9rem 1.1rem;margin-bottom:.75rem}
+.q{font-size:14px;font-weight:500;color:var(--color-text-primary);cursor:pointer;display:flex;align-items:flex-start;gap:8px}
+.q-text{flex:1}
+.chev{color:var(--color-text-secondary);font-size:14px;margin-top:1px;transition:transform .2s;flex-shrink:0}
+.chev.open{transform:rotate(180deg)}
+.ans{display:none;margin-top:.85rem;padding-top:.85rem;border-top:0.5px solid var(--color-border-tertiary)}
+.ans.show{display:block}
+.ans p{font-size:13.5px;line-height:1.75;color:var(--color-text-primary);margin-bottom:.6rem}
+.ans p:last-child{margin-bottom:0}
+.code{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:.75rem 1rem;font-family:var(--font-mono);font-size:12px;line-height:1.65;color:var(--color-text-primary);margin:.5rem 0;overflow-x:auto;white-space:pre}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;font-weight:500;margin-right:5px}
+.bp{background:#EEEDFE;color:#3C3489}
+.bt{background:#E1F5EE;color:#085041}
+.ba{background:#FAEEDA;color:#633806}
+.bc{background:#FAECE7;color:#712B13}
+.bb{background:#E6F1FB;color:#0C447C}
+.tip{background:#E1F5EE;border:0.5px solid #9FE1CB;border-radius:var(--border-radius-md);padding:.7rem .9rem;font-size:13px;color:#085041;margin-bottom:1rem}
+.warn{background:#FAEEDA;border:0.5px solid #FAC775;border-radius:var(--border-radius-md);padding:.7rem .9rem;font-size:13px;color:#633806;margin-bottom:.75rem}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;background:#EEEDFE;color:#3C3489;margin-right:4px;margin-bottom:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.75rem 1rem}
+.metric-l{font-size:12px;color:var(--color-text-secondary);margin-bottom:3px}
+.metric-v{font-size:18px;font-weight:500;color:var(--color-text-primary)}
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1rem 0}
+.progress-bar{height:6px;background:var(--color-background-secondary);border-radius:99px;margin-top:.75rem;overflow:hidden}
+.progress-fill{height:100%;background:#534AB7;border-radius:99px;transition:width .3s}
+.topic-btn{padding:5px 12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12px;cursor:pointer;margin:3px}
+.topic-btn.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489;font-weight:500}
+@media(max-width:480px){.grid2{grid-template-columns:1fr}}
+</style>
+
+<h2 class="sr-only">Complete Java interview preparation guide for Kankati Aneesh — data analyst role</h2>
+
+<div class="pg">
+<div class="tabs">
+  <div class="tab on" onclick="sw('roadmap')">Roadmap</div>
+  <div class="tab" onclick="sw('basics')">Basics</div>
+  <div class="tab" onclick="sw('oop')">OOP</div>
+  <div class="tab" onclick="sw('collections')">Collections</div>
+  <div class="tab" onclick="sw('exceptions')">Exceptions</div>
+  <div class="tab" onclick="sw('advanced')">Advanced</div>
+  <div class="tab" onclick="sw('coding')">Coding Qs</div>
+  <div class="tab" onclick="sw('scripts')">How to Answer</div>
+</div>
+
+<!-- ROADMAP -->
+<div id="sec-roadmap" class="sec on">
+  <p class="sec-title">Your Java prep roadmap</p>
+  <p class="sec-sub">One week, six topics. Here's exactly what to focus on and in what order.</p>
+
+  <div class="tip">You already have Java in your resume under Programming Languages — so you're not starting from zero. Frame Java answers confidently. You know the concepts; this prep sharpens your ability to explain them clearly.</div>
+
+  <div class="grid2">
+    <div class="metric"><div class="metric-l">Topics to cover</div><div class="metric-v">6 areas</div></div>
+    <div class="metric"><div class="metric-l">Questions in this kit</div><div class="metric-v">50+</div></div>
+    <div class="metric"><div class="metric-l">Most asked in DA interviews</div><div class="metric-v">OOP + Collections</div></div>
+    <div class="metric"><div class="metric-l">Time to go through all tabs</div><div class="metric-v">~3 hours</div></div>
+  </div>
+
+  <div class="card">
+    <div class="q"><i class="ti ti-calendar-week" aria-hidden="true" style="color:#534AB7;margin-top:1px"></i><span class="q-text">Day-by-day study plan (7 days)</span></div>
+    <div style="margin-top:.85rem">
+      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:.65rem"><div style="min-width:60px;font-size:12px;font-weight:500;color:#534AB7;padding-top:1px">Day 1</div><div style="font-size:13.5px;color:var(--color-text-primary)">Basics tab — data types, variables, keywords, how Java works (JVM/JDK/JRE). Read + say answers out loud.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:.65rem"><div style="min-width:60px;font-size:12px;font-weight:500;color:#534AB7;padding-top:1px">Day 2</div><div style="font-size:13.5px;color:var(--color-text-primary)">OOP tab — the 4 pillars. This is the most asked topic. Practice explaining each with your own example.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:.65rem"><div style="min-width:60px;font-size:12px;font-weight:500;color:#534AB7;padding-top:1px">Day 3</div><div style="font-size:13.5px;color:var(--color-text-primary)">Collections tab — ArrayList vs LinkedList, HashMap, when to use what. Very commonly tested.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:.65rem"><div style="min-width:60px;font-size:12px;font-weight:500;color:#534AB7;padding-top:1px">Day 4</div><div style="font-size:13.5px;color:var(--color-text-primary)">Exceptions tab + Advanced tab. Exception handling is practical. Advanced covers interfaces, generics, lambda.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:.65rem"><div style="min-width:60px;font-size:12px;font-weight:500;color:#534AB7;padding-top:1px">Day 5</div><div style="font-size:13.5px;color:var(--color-text-primary)">Coding questions tab — practice writing these on paper, not just reading them. Muscle memory matters.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:.65rem"><div style="min-width:60px;font-size:12px;font-weight:500;color:#534AB7;padding-top:1px">Day 6</div><div style="font-size:13.5px;color:var(--color-text-primary)">Full review — go through every tab again, this time without reading answers first. Quiz yourself.</div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:60px;font-size:12px;font-weight:500;color:#534AB7;padding-top:1px">Day 7</div><div style="font-size:13.5px;color:var(--color-text-primary)">Rest + light review. Go through the "How to Answer" tab. Get good sleep. You're ready.</div></div>
+    </div>
+  </div>
+
+  <div class="warn">For a data analyst Java interview, they care more about OOP understanding, clean code thinking, and basic data structures — less about complex algorithms. Don't panic about sorting algorithm time complexity unless they specifically ask.</div>
+</div>
+
+<!-- BASICS -->
+<div id="sec-basics" class="sec">
+  <p class="sec-title">Java basics</p>
+  <p class="sec-sub">Click any question to see the full answer. Learn these first — they come up in every interview.</p>
+
+  <div id="basics-qs"></div>
+</div>
+
+<!-- OOP -->
+<div id="sec-oop" class="sec">
+  <p class="sec-title">Object-Oriented Programming (OOP)</p>
+  <p class="sec-sub">The most important topic for any Java interview. Know all 4 pillars cold.</p>
+  <div class="tip">If they ask only one Java question, it will be about OOP. The 4 pillars — Encapsulation, Inheritance, Polymorphism, Abstraction — must roll off your tongue with a clear definition AND a real example each.</div>
+  <div id="oop-qs"></div>
+</div>
+
+<!-- COLLECTIONS -->
+<div id="sec-collections" class="sec">
+  <p class="sec-title">Collections framework</p>
+  <p class="sec-sub">HashMap, ArrayList, LinkedList, Set — know the differences and when to use each.</p>
+  <div id="collections-qs"></div>
+</div>
+
+<!-- EXCEPTIONS -->
+<div id="sec-exceptions" class="sec">
+  <p class="sec-title">Exception handling</p>
+  <p class="sec-sub">try-catch-finally, checked vs unchecked, custom exceptions — all covered here.</p>
+  <div id="exceptions-qs"></div>
+</div>
+
+<!-- ADVANCED -->
+<div id="sec-advanced" class="sec">
+  <p class="sec-title">Advanced Java concepts</p>
+  <p class="sec-sub">Interfaces, abstract classes, generics, Java 8 features. Know these for senior-level questions.</p>
+  <div id="advanced-qs"></div>
+</div>
+
+<!-- CODING -->
+<div id="sec-coding" class="sec">
+  <p class="sec-title">Coding questions</p>
+  <p class="sec-sub">These are actual write-the-code questions. Study the logic, not just the output. Write them out by hand at least once.</p>
+  <div class="tip">When asked to write code in an interview: think out loud, explain what you're doing before you do it, and always mention edge cases even if you don't code them.</div>
+  <div id="coding-qs"></div>
+</div>
+
+<!-- HOW TO ANSWER -->
+<div id="sec-scripts" class="sec">
+  <p class="sec-title">How to answer Java questions</p>
+  <p class="sec-sub">Communication strategy — how to structure your answers, what to say when you're stuck, and how to sound confident.</p>
+
+  <div class="card">
+    <div class="q"><i class="ti ti-message" aria-hidden="true" style="color:#534AB7;margin-top:1px"></i><span class="q-text" style="font-weight:500">The 3-part answer formula for concept questions</span></div>
+    <div style="margin-top:.85rem;font-size:13.5px;line-height:1.75;color:var(--color-text-primary)">
+      <strong style="font-weight:500">1. Define it in one sentence.</strong><br>
+      "Polymorphism is the ability of a single interface to represent different underlying forms."<br><br>
+      <strong style="font-weight:500">2. Explain how it works technically.</strong><br>
+      "In Java, this happens through method overriding — a subclass provides its own implementation of a method defined in the parent class. At runtime, Java calls the subclass version even if the reference type is the parent."<br><br>
+      <strong style="font-weight:500">3. Give a real example.</strong><br>
+      "For example, if you have an Animal class with a speak() method, and Dog and Cat extend Animal and override speak(), you can have a list of Animal objects and each one calls its own version of speak(). The code doesn't need to know whether it's a dog or cat — it just calls speak()."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="q"><i class="ti ti-lifebuoy" aria-hidden="true" style="color:#534AB7;margin-top:1px"></i><span class="q-text" style="font-weight:500">What to say when you don't know the answer</span></div>
+    <div style="margin-top:.85rem;font-size:13.5px;line-height:1.75;color:var(--color-text-primary)">
+      Never go silent. Never say "I don't know" and stop. Always bridge.<br><br>
+      <strong style="font-weight:500">Template:</strong> "I haven't worked with [X] extensively, but from what I understand, [related concept you know]. I'd approach it by [logical reasoning]. I'd also want to [look it up / test it] to confirm."<br><br>
+      <strong style="font-weight:500">Example:</strong> "I haven't used Java's ForkJoinPool directly, but I know it's related to parallel processing and the work-stealing algorithm. I'd start by understanding the thread pool size relative to available CPU cores, similar to how I think about parallelism in Python's multiprocessing."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="q"><i class="ti ti-code" aria-hidden="true" style="color:#534AB7;margin-top:1px"></i><span class="q-text" style="font-weight:500">What to say before writing code</span></div>
+    <div style="margin-top:.85rem;font-size:13.5px;line-height:1.75;color:var(--color-text-primary)">
+      Always verbalize your plan before you start writing. It shows structured thinking.<br><br>
+      Say: <em>"Before I write the code, let me think through the approach. I'm going to [do X] first, then [do Y]. I'll need to handle the edge case where [Z]. Does that approach make sense?"</em><br><br>
+      This buys you thinking time AND impresses them with your communication.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="q"><i class="ti ti-link" aria-hidden="true" style="color:#534AB7;margin-top:1px"></i><span class="q-text" style="font-weight:500">How to connect Java to your data analyst work</span></div>
+    <div style="margin-top:.85rem;font-size:13.5px;line-height:1.75;color:var(--color-text-primary)">
+      If they ask why Java matters for a data analyst role, say:<br><br>
+      <em>"Java is often used in enterprise data pipelines — tools like Apache Spark, Hadoop, and Kafka are JVM-based. Understanding Java means I can work closer to the data infrastructure layer, not just the analysis layer. For example, if a Spark job written in Java is producing unexpected results, I can trace through the logic rather than just consuming the output."</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="q"><i class="ti ti-podium" aria-hidden="true" style="color:#534AB7;margin-top:1px"></i><span class="q-text" style="font-weight:500">5 answers to memorize word-for-word</span></div>
+    <div style="margin-top:.85rem;font-size:13.5px;line-height:1.75;color:var(--color-text-primary)">
+      These come up in almost every Java interview. Know them cold:<br><br>
+      <strong style="font-weight:500">1.</strong> "Java is platform-independent because Java code compiles to bytecode, which runs on the JVM. The JVM is available on any OS, so the same .class file runs anywhere — write once, run anywhere."<br><br>
+      <strong style="font-weight:500">2.</strong> "The four pillars of OOP are Encapsulation, Inheritance, Polymorphism, and Abstraction."<br><br>
+      <strong style="font-weight:500">3.</strong> "== checks reference equality — whether two variables point to the same object in memory. .equals() checks value equality — whether the contents are the same."<br><br>
+      <strong style="font-weight:500">4.</strong> "A checked exception must be declared or handled at compile time. An unchecked exception — like NullPointerException — occurs at runtime and doesn't need to be declared."<br><br>
+      <strong style="font-weight:500">5.</strong> "ArrayList uses a dynamic array and gives O(1) random access. LinkedList uses a doubly-linked list and gives O(1) insertion at both ends but O(n) random access."
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const basicsQs=[
+  {q:"What is Java? Why is it platform-independent?",tags:["Fundamental"],ans:`<p>Java is a high-level, object-oriented programming language developed by Sun Microsystems (now Oracle). It is platform-independent because of the JVM — Java Virtual Machine.</p><p>When you write Java code and compile it, it doesn't compile to machine code specific to Windows or Mac. It compiles to <strong style="font-weight:500">bytecode</strong> — a middle format stored in .class files. The JVM on any operating system reads this bytecode and runs it. So the same .class file runs on Windows, Mac, and Linux without changes. This is the "write once, run anywhere" principle.</p>`},
+  {q:"What is the difference between JDK, JRE, and JVM?",tags:["Fundamental"],ans:`<p><strong style="font-weight:500">JVM (Java Virtual Machine)</strong> — the engine that actually runs bytecode. It's what makes Java platform-independent. It manages memory (via garbage collection) and executes instructions.</p><p><strong style="font-weight:500">JRE (Java Runtime Environment)</strong> — JVM + the standard libraries (like java.util, java.io). If you just want to run Java programs, you need the JRE.</p><p><strong style="font-weight:500">JDK (Java Development Kit)</strong> — JRE + development tools like the compiler (javac), debugger, and documentation tools. If you want to write and compile Java code, you need the JDK.</p><p>Think of it as: JDK ⊃ JRE ⊃ JVM. Each is a superset of the one inside it.</p>`},
+  {q:"What are the 8 primitive data types in Java?",tags:["Data types"],ans:`<p>Java has 8 primitive types — they store raw values, not objects:</p><div class="code">byte    — 8-bit integer  (-128 to 127)
+short   — 16-bit integer (-32,768 to 32,767)
+int     — 32-bit integer (-2.1B to 2.1B)  ← most common
+long    — 64-bit integer (add L suffix: 100L)
+float   — 32-bit decimal (add f suffix: 3.14f)
+double  — 64-bit decimal ← most common for decimals
+char    — single character: 'A'
+boolean — true or false</div><p>Everything else in Java is an object (String, Integer, ArrayList, etc.).</p>`},
+  {q:"What is the difference between int and Integer?",tags:["Data types"],ans:`<p><strong style="font-weight:500">int</strong> is a primitive type. It stores a raw 32-bit number directly in memory. It cannot be null. It cannot be used in Collections (like ArrayList).</p><p><strong style="font-weight:500">Integer</strong> is a wrapper class — it wraps the int value inside an object. It can be null. It can be used in Collections. It has utility methods like Integer.parseInt(), Integer.MAX_VALUE.</p><div class="code">int x = 5;              // primitive
+Integer y = 5;          // object (auto-boxed from 5)
+Integer z = null;       // valid — objects can be null
+int a = null;           // ERROR — primitives can't be null</div><p><strong style="font-weight:500">Autoboxing</strong> is Java automatically converting between int and Integer when needed.</p>`},
+  {q:"What is the difference between == and .equals()?",tags:["Operators","Must know"],ans:`<p>This is one of the most commonly asked Java questions. The answer must be crisp:</p><p><strong style="font-weight:500">==</strong> compares references — it checks if two variables point to the exact same object in memory. For primitives, it compares the actual values.</p><p><strong style="font-weight:500">.equals()</strong> compares content — it checks if two objects have the same value, even if they're different objects in memory.</p><div class="code">String a = new String("hello");
+String b = new String("hello");
+
+System.out.println(a == b);       // false (different objects)
+System.out.println(a.equals(b));  // true  (same content)</div><p>Rule of thumb: always use .equals() when comparing String objects. Use == only for primitives or when you truly want to check if it's the same object.</p>`},
+  {q:"What is the difference between static and non-static?",tags:["Keywords"],ans:`<p><strong style="font-weight:500">static</strong> means the variable or method belongs to the class itself, not to any specific object (instance). It's shared across all objects of that class.</p><p><strong style="font-weight:500">Non-static</strong> (instance) means the variable or method belongs to each individual object. Every object has its own copy.</p><div class="code">class Counter {
+    static int totalCount = 0;  // shared — one copy for all
+    int id;                     // each object has its own id
+
+    Counter(int id) {
+        this.id = id;
+        totalCount++;           // increments the shared count
+    }
+}
+Counter c1 = new Counter(1);  // totalCount = 1
+Counter c2 = new Counter(2);  // totalCount = 2</div><p>You can call static methods without creating an object: Math.max(3,5) — Math is never instantiated.</p>`},
+  {q:"What is the difference between final, finally, and finalize?",tags:["Keywords","Tricky"],ans:`<p>Three different things — don't confuse them:</p><p><strong style="font-weight:500">final</strong> — a keyword. On a variable: value can't change (constant). On a method: can't be overridden. On a class: can't be extended (subclassed).</p><p><strong style="font-weight:500">finally</strong> — a block in exception handling. Code inside finally always runs, whether or not an exception occurred. Used for cleanup (closing files, DB connections).</p><p><strong style="font-weight:500">finalize()</strong> — a method called by the garbage collector just before an object is destroyed. Rarely used in modern Java — it's been deprecated.</p><div class="code">final int MAX = 100;           // constant — can't change
+
+try {
+    int result = 10 / 0;
+} catch (Exception e) {
+    System.out.println("Error");
+} finally {
+    System.out.println("Always runs");  // always executes
+}</div>`},
+  {q:"What is a constructor? How is it different from a method?",tags:["Basics"],ans:`<p>A <strong style="font-weight:500">constructor</strong> is a special block of code that runs automatically when an object is created (using new). It initializes the object's state.</p><p>Differences from a method: constructor has the same name as the class, has no return type (not even void), and is called automatically via new — you don't call it explicitly.</p><div class="code">class Person {
+    String name;
+    int age;
+
+    // Constructor — same name as class, no return type
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method — has return type, called explicitly
+    void greet() {
+        System.out.println("Hi, I'm " + name);
+    }
+}
+
+Person p = new Person("Aneesh", 22); // constructor auto-called
+p.greet();                           // method called explicitly</div>`},
+];
+
+const oopQs=[
+  {q:"What are the 4 pillars of OOP?",tags:["Must know","Core"],ans:`<p>The four pillars are Encapsulation, Inheritance, Polymorphism, and Abstraction. These are not just concepts — they're design principles that make code maintainable, reusable, and organized.</p><p>Remember them as <strong style="font-weight:500">EIPA</strong>: Encapsulation → Inheritance → Polymorphism → Abstraction. Every interview will ask about at least one of them.</p>`},
+  {q:"What is Encapsulation? Give an example.",tags:["OOP Pillar","Must know"],ans:`<p><strong style="font-weight:500">Encapsulation</strong> is bundling data (variables) and the methods that operate on that data into a single unit (class), and restricting direct access to the data from outside the class.</p><p>You do this by making fields private and providing public getter/setter methods. This gives you control over how data is read and modified.</p><div class="code">class BankAccount {
+    private double balance;  // private — can't access from outside
+
+    public double getBalance() {      // controlled read
+        return balance;
+    }
+
+    public void deposit(double amount) {  // controlled write
+        if (amount > 0) balance += amount;
+        // can add validation — direct access can't do this
+    }
+}</div><p>Real-world analogy: an ATM. You can check balance and withdraw money (through defined methods), but you can't reach into the system and change the balance directly.</p>`},
+  {q:"What is Inheritance? Give an example.",tags:["OOP Pillar","Must know"],ans:`<p><strong style="font-weight:500">Inheritance</strong> is a mechanism where one class (child/subclass) acquires the properties and behaviors of another class (parent/superclass). It enables code reuse.</p><p>Use the extends keyword in Java.</p><div class="code">class Animal {
+    String name;
+    void eat() {
+        System.out.println(name + " is eating");
+    }
+}
+
+class Dog extends Animal {   // Dog inherits from Animal
+    void bark() {
+        System.out.println(name + " is barking");
+    }
+}
+
+Dog d = new Dog();
+d.name = "Bruno";
+d.eat();   // inherited from Animal — no need to rewrite
+d.bark();  // Dog's own method</div><p>Java supports single inheritance for classes (one parent only) but multiple inheritance through interfaces.</p>`},
+  {q:"What is Polymorphism? What are its two types?",tags:["OOP Pillar","Must know"],ans:`<p><strong style="font-weight:500">Polymorphism</strong> means "many forms." One interface, multiple implementations. A method or object behaves differently depending on the context.</p><p>Two types:</p><p><strong style="font-weight:500">1. Compile-time polymorphism (Method Overloading)</strong> — same method name, different parameters. Java decides which one to call at compile time.</p><div class="code">class Calculator {
+    int add(int a, int b)          { return a + b; }
+    double add(double a, double b) { return a + b; }
+    int add(int a, int b, int c)   { return a + b + c; }
+}</div><p><strong style="font-weight:500">2. Runtime polymorphism (Method Overriding)</strong> — subclass provides its own version of a parent method. Java decides which one to call at runtime.</p><div class="code">class Animal { void speak() { System.out.println("..."); } }
+class Dog extends Animal { void speak() { System.out.println("Woof"); } }
+class Cat extends Animal { void speak() { System.out.println("Meow"); } }
+
+Animal a = new Dog();  // Animal reference, Dog object
+a.speak();  // prints "Woof" — runtime decides</div>`},
+  {q:"What is Abstraction? Difference between abstract class and interface?",tags:["OOP Pillar","Must know"],ans:`<p><strong style="font-weight:500">Abstraction</strong> is hiding implementation details and showing only the essential features. You define what an object does, not how it does it.</p><p>Achieved in Java via abstract classes and interfaces.</p><p><strong style="font-weight:500">Abstract class:</strong></p><div class="code">abstract class Shape {
+    abstract double area();   // no body — subclass must implement
+    void display() {          // can have concrete method too
+        System.out.println("Area: " + area());
+    }
+}
+class Circle extends Shape {
+    double radius;
+    Circle(double r) { this.radius = r; }
+    double area() { return 3.14 * radius * radius; }
+}</div><p><strong style="font-weight:500">Interface:</strong></p><div class="code">interface Drawable {
+    void draw();  // all methods implicitly public abstract
+}
+class Circle extends Shape implements Drawable {
+    public void draw() { System.out.println("Drawing circle"); }
+}</div><p><strong style="font-weight:500">Key difference:</strong> A class can extend only ONE abstract class but can implement MULTIPLE interfaces. Use abstract class when you want to share code between related classes. Use interface when you want to define a contract that unrelated classes can implement.</p>`},
+  {q:"What is the difference between method overloading and overriding?",tags:["OOP","Tricky"],ans:`<p>Both involve methods with the same name — but they're completely different concepts:</p><p><strong style="font-weight:500">Overloading</strong> — same method name, different parameters (type/number/order). Same class. Resolved at compile time.</p><p><strong style="font-weight:500">Overriding</strong> — subclass redefines a method from parent class. Same name, same parameters, same return type. Resolved at runtime. Use @Override annotation.</p><div class="code">// Overloading — same class
+class Printer {
+    void print(String s)  { ... }
+    void print(int n)     { ... }  // different parameter
+}
+
+// Overriding — parent → child
+class Animal { void sound() { System.out.println("..."); } }
+class Dog extends Animal {
+    @Override
+    void sound() { System.out.println("Woof"); }
+}</div>`},
+  {q:"What is the 'this' keyword in Java?",tags:["OOP","Keywords"],ans:`<p><strong style="font-weight:500">this</strong> refers to the current object — the object whose method or constructor is currently being executed.</p><p>Most common uses:</p><div class="code">class Person {
+    String name;
+
+    // Use 1: distinguish instance var from parameter
+    Person(String name) {
+        this.name = name;  // this.name = instance var, name = param
+    }
+
+    // Use 2: call another constructor in same class
+    Person() {
+        this("Unknown");  // calls Person(String name)
+    }
+
+    // Use 3: pass current object as argument
+    void register(Registry r) {
+        r.add(this);  // pass this person object
+    }
+}</div>`},
+  {q:"What is the 'super' keyword?",tags:["OOP","Keywords"],ans:`<p><strong style="font-weight:500">super</strong> refers to the parent class. Used inside a subclass to access parent's methods, variables, or constructor.</p><div class="code">class Animal {
+    String name = "Animal";
+    Animal(String name) { this.name = name; }
+    void speak() { System.out.println("Generic sound"); }
+}
+
+class Dog extends Animal {
+    String name = "Dog";
+
+    Dog(String name) {
+        super(name);  // call parent constructor — must be first line
+    }
+
+    void speak() {
+        super.speak();  // call parent method
+        System.out.println("Woof");
+    }
+
+    void showName() {
+        System.out.println(super.name);  // access parent variable
+        System.out.println(this.name);   // access own variable
+    }
+}</div>`},
+];
+
+const collectionsQs=[
+  {q:"What is the Java Collections Framework?",tags:["Collections","Core"],ans:`<p>The Java Collections Framework is a set of classes and interfaces in java.util that provide ready-made data structures: lists, sets, maps, queues, etc.</p><p>Key interfaces: <strong style="font-weight:500">List</strong> (ordered, allows duplicates), <strong style="font-weight:500">Set</strong> (unordered, no duplicates), <strong style="font-weight:500">Map</strong> (key-value pairs), <strong style="font-weight:500">Queue</strong> (FIFO). Common implementations: ArrayList, LinkedList, HashSet, TreeSet, HashMap, TreeMap.</p><div class="code">List&lt;String&gt; list = new ArrayList&lt;&gt;();
+Set&lt;String&gt; set = new HashSet&lt;&gt;();
+Map&lt;String, Integer&gt; map = new HashMap&lt;&gt;();</div>`},
+  {q:"ArrayList vs LinkedList — when to use which?",tags:["Collections","Must know"],ans:`<p><strong style="font-weight:500">ArrayList</strong> — backed by a dynamic array. Fast random access O(1) — get(index) is instant. Slow insertion/deletion in the middle O(n) — has to shift elements.</p><p><strong style="font-weight:500">LinkedList</strong> — backed by a doubly-linked list of nodes. Slow random access O(n) — must traverse from start. Fast insertion/deletion at ends O(1) — just update pointers.</p><div class="code">// Use ArrayList when: you read by index often
+ArrayList&lt;String&gt; names = new ArrayList&lt;&gt;();
+names.add("Aneesh");
+System.out.println(names.get(0));  // O(1) — instant
+
+// Use LinkedList when: you add/remove from front/back often
+LinkedList&lt;String&gt; queue = new LinkedList&lt;&gt;();
+queue.addFirst("first");    // O(1)
+queue.removeLast();         // O(1)</div><p>In practice: <strong style="font-weight:500">default to ArrayList</strong>. Use LinkedList only when you have a specific need for frequent insertions at the beginning.</p>`},
+  {q:"How does HashMap work internally?",tags:["Collections","Advanced","Must know"],ans:`<p>HashMap stores key-value pairs. Internally, it uses an array of "buckets." Here's how it works step by step:</p><p>1. When you call put(key, value), Java calls key.hashCode() to get a hash integer.</p><p>2. The hash is converted to a bucket index (position in the internal array).</p><p>3. The entry is stored at that bucket. If two keys hash to the same bucket (collision), they're stored as a linked list (or a tree in Java 8+ when the list gets long).</p><p>4. On get(key), Java hashes the key again, goes to that bucket, then uses .equals() to find the exact entry.</p><div class="code">Map&lt;String, Integer&gt; scores = new HashMap&lt;&gt;();
+scores.put("Aneesh", 95);  // hash("Aneesh") → bucket 7 → store
+scores.put("Rahul", 88);
+System.out.println(scores.get("Aneesh"));  // hash → bucket 7 → equals → 95</div><p>Key rule: for a class to work as a HashMap key, you must implement both hashCode() and equals() consistently.</p>`},
+  {q:"Difference between HashMap, LinkedHashMap, and TreeMap?",tags:["Collections","Comparison"],ans:`<p>All three implement Map (key-value pairs), but differ in ordering:</p><p><strong style="font-weight:500">HashMap</strong> — no guaranteed order. Fastest. O(1) get/put. Use when order doesn't matter.</p><p><strong style="font-weight:500">LinkedHashMap</strong> — maintains insertion order. Slightly slower than HashMap. Use when you need to iterate in the order you inserted.</p><p><strong style="font-weight:500">TreeMap</strong> — keys always sorted in natural order (or custom Comparator). O(log n) get/put. Use when you need sorted keys.</p><div class="code">Map&lt;String,Integer&gt; hm = new HashMap&lt;&gt;();    // no order
+Map&lt;String,Integer&gt; lm = new LinkedHashMap&lt;&gt;(); // insertion order
+Map&lt;String,Integer&gt; tm = new TreeMap&lt;&gt;();       // sorted by key</div>`},
+  {q:"What is the difference between HashSet and TreeSet?",tags:["Collections"],ans:`<p><strong style="font-weight:500">HashSet</strong> — no order, no duplicates, O(1) add/contains. Uses hashing internally (backed by HashMap).</p><p><strong style="font-weight:500">TreeSet</strong> — sorted order, no duplicates, O(log n) add/contains. Uses a Red-Black tree internally. Elements must be Comparable or you provide a Comparator.</p><div class="code">Set&lt;Integer&gt; hs = new HashSet&lt;&gt;();
+hs.add(3); hs.add(1); hs.add(2);
+System.out.println(hs);  // [1, 2, 3] or any order
+
+Set&lt;Integer&gt; ts = new TreeSet&lt;&gt;();
+ts.add(3); ts.add(1); ts.add(2);
+System.out.println(ts);  // [1, 2, 3] — always sorted</div>`},
+  {q:"What is Iterator? How do you iterate over a collection?",tags:["Collections"],ans:`<p>Iterator is an interface for traversing a collection one element at a time. It has hasNext() (is there a next element?) and next() (get the next element).</p><div class="code">List&lt;String&gt; names = new ArrayList&lt;&gt;(List.of("Aneesh","Rahul","Priya"));
+
+// Method 1: for-each (most common, cleanest)
+for (String name : names) {
+    System.out.println(name);
+}
+
+// Method 2: iterator (use when you need to remove during iteration)
+Iterator&lt;String&gt; it = names.iterator();
+while (it.hasNext()) {
+    String name = it.next();
+    if (name.equals("Rahul")) it.remove();  // safe removal
+}
+
+// Method 3: index-based (ArrayList only)
+for (int i = 0; i &lt; names.size(); i++) {
+    System.out.println(names.get(i));
+}</div><p>Never remove from a collection using a regular for-each loop — you'll get ConcurrentModificationException. Use Iterator.remove() instead.</p>`},
+];
+
+const exceptionsQs=[
+  {q:"What is an exception? What is exception handling?",tags:["Exceptions","Core"],ans:`<p>An <strong style="font-weight:500">exception</strong> is an unexpected event that disrupts the normal flow of a program — like dividing by zero, accessing a null object, or a file not found.</p><p><strong style="font-weight:500">Exception handling</strong> is the mechanism to catch these events, handle them gracefully (log them, show a user-friendly message, try a fallback), and keep the program running instead of crashing.</p><div class="code">try {
+    int result = 10 / 0;  // this throws ArithmeticException
+} catch (ArithmeticException e) {
+    System.out.println("Can't divide by zero: " + e.getMessage());
+} finally {
+    System.out.println("This always runs — cleanup here");
+}</div>`},
+  {q:"What is the difference between checked and unchecked exceptions?",tags:["Exceptions","Must know"],ans:`<p><strong style="font-weight:500">Checked exceptions</strong> — must be handled or declared at compile time. The compiler forces you to deal with them. They represent recoverable conditions (file not found, network issues). They extend Exception but not RuntimeException.</p><p><strong style="font-weight:500">Unchecked exceptions</strong> — not checked at compile time. They represent programming bugs — things that shouldn't happen if your code is correct. They extend RuntimeException.</p><div class="code">// Checked — compiler forces you to handle it
+try {
+    FileReader f = new FileReader("data.txt"); // FileNotFoundException
+} catch (FileNotFoundException e) {
+    System.out.println("File not found");
+}
+
+// Unchecked — no forced handling, but will crash at runtime
+String s = null;
+System.out.println(s.length()); // NullPointerException — unchecked</div><p>Common unchecked: NullPointerException, ArrayIndexOutOfBoundsException, ClassCastException, ArithmeticException, IllegalArgumentException.</p>`},
+  {q:"What is the difference between throw and throws?",tags:["Exceptions","Tricky"],ans:`<p><strong style="font-weight:500">throw</strong> — used inside a method body to actually throw an exception object. You're creating and throwing an exception right now.</p><p><strong style="font-weight:500">throws</strong> — used in the method signature to declare that this method might throw a checked exception. It's a warning to callers: "handle this or propagate it."</p><div class="code">// throws — declaration in method signature
+public void readFile(String path) throws IOException {
+    FileReader f = new FileReader(path);  // might throw IOException
+}
+
+// throw — actually throwing an exception
+public void setAge(int age) {
+    if (age < 0) {
+        throw new IllegalArgumentException("Age can't be negative: " + age);
+    }
+    this.age = age;
+}</div>`},
+  {q:"Can we write a try block without a catch block?",tags:["Exceptions","Tricky"],ans:`<p>Yes — but only if you have a finally block. A try block must be followed by either catch, finally, or both. try alone is not valid.</p><div class="code">// Valid — try with finally only (no catch)
+try {
+    riskyOperation();
+} finally {
+    closeResources();  // always runs, even if exception propagates
+}
+
+// Valid — try-catch-finally
+try { ... } catch (Exception e) { ... } finally { ... }
+
+// Invalid — try alone
+try { ... }  // compile error</div><p>When is try-finally without catch useful? When you want to ensure cleanup always happens but you're letting the exception propagate up to a caller that will handle it.</p>`},
+  {q:"What is a custom exception? How do you create one?",tags:["Exceptions"],ans:`<p>You create a custom exception by extending Exception (for checked) or RuntimeException (for unchecked). This lets you create application-specific exceptions with meaningful names.</p><div class="code">// Custom checked exception
+class InsufficientFundsException extends Exception {
+    private double amount;
+
+    InsufficientFundsException(double amount) {
+        super("Insufficient funds. Needed: " + amount);
+        this.amount = amount;
+    }
+
+    double getAmount() { return amount; }
+}
+
+// Using it
+class BankAccount {
+    private double balance = 100.0;
+
+    void withdraw(double amount) throws InsufficientFundsException {
+        if (amount > balance) {
+            throw new InsufficientFundsException(amount - balance);
+        }
+        balance -= amount;
+    }
+}</div>`},
+];
+
+const advancedQs=[
+  {q:"What is the difference between an interface and an abstract class?",tags:["Advanced","Must know"],ans:`<p>Both are used for abstraction, but they serve different purposes:</p><p><strong style="font-weight:500">Abstract class:</strong> can have abstract methods (no body) AND concrete methods (with body). Can have instance variables, constructors. A class can extend only ONE abstract class.</p><p><strong style="font-weight:500">Interface:</strong> before Java 8, all methods were abstract. Java 8+ allows default and static methods with bodies. No instance variables (only public static final constants). A class can implement MULTIPLE interfaces.</p><div class="code">abstract class Vehicle {
+    int speed;               // instance variable — allowed
+    abstract void fuel();    // no body — must be overridden
+    void start() { System.out.println("Starting..."); } // concrete
+}
+
+interface Electric {
+    void charge();           // abstract (no body)
+    default void status() {  // Java 8+ default method
+        System.out.println("Electric vehicle");
+    }
+}
+
+class Tesla extends Vehicle implements Electric {
+    void fuel()   { System.out.println("No fuel needed"); }
+    void charge() { System.out.println("Charging..."); }
+}</div><p>Rule: use abstract class for "is-a" relationships with shared code. Use interface for "can-do" capabilities that unrelated classes share.</p>`},
+  {q:"What are generics in Java?",tags:["Advanced"],ans:`<p>Generics let you write classes, interfaces, and methods that work with any data type — specified at compile time. They provide type safety without casting.</p><div class="code">// Without generics — risky, requires casting
+List list = new ArrayList();
+list.add("hello");
+String s = (String) list.get(0);  // casting needed, can fail
+
+// With generics — type-safe, no casting needed
+List&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("hello");
+String s = list.get(0);   // no cast needed — compiler knows it's a String
+// list.add(123);           // compile error — wrong type</div><p>You can write your own generic class:</p><div class="code">class Box&lt;T&gt; {
+    private T content;
+    void set(T item) { this.content = item; }
+    T get()          { return content; }
+}
+Box&lt;String&gt; strBox = new Box&lt;&gt;();
+Box&lt;Integer&gt; intBox = new Box&lt;&gt;();</div>`},
+  {q:"What are Java 8 features? What is a lambda expression?",tags:["Advanced","Java 8","Must know"],ans:`<p>Java 8 (2014) was a major release. Key features:</p><p><strong style="font-weight:500">Lambda expressions</strong> — shorthand for anonymous functions. Enables functional-style programming.</p><div class="code">// Before Java 8 — anonymous class
+Runnable r = new Runnable() {
+    public void run() { System.out.println("Running"); }
+};
+
+// Java 8 lambda — much cleaner
+Runnable r = () -> System.out.println("Running");</div><p><strong style="font-weight:500">Stream API</strong> — pipeline operations on collections (filter, map, reduce):</p><div class="code">List&lt;Integer&gt; nums = List.of(1,2,3,4,5,6);
+List&lt;Integer&gt; evens = nums.stream()
+    .filter(n -> n % 2 == 0)
+    .collect(Collectors.toList());  // [2, 4, 6]</div><p><strong style="font-weight:500">Optional</strong> — wrapper to handle null safely. <strong style="font-weight:500">Default methods</strong> in interfaces. <strong style="font-weight:500">Method references</strong> (System.out::println).</p>`},
+  {q:"What is multithreading? What is a thread?",tags:["Advanced","Multithreading"],ans:`<p>A <strong style="font-weight:500">thread</strong> is the smallest unit of a program that can execute independently. A process (like your Java app) can have multiple threads running concurrently — this is <strong style="font-weight:500">multithreading</strong>.</p><p>Two ways to create a thread in Java:</p><div class="code">// Method 1: extend Thread
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread running: " + Thread.currentThread().getName());
+    }
+}
+MyThread t = new MyThread();
+t.start();  // starts the thread — don't call run() directly
+
+// Method 2: implement Runnable (preferred — doesn't waste inheritance)
+class MyTask implements Runnable {
+    public void run() { System.out.println("Task running"); }
+}
+Thread t = new Thread(new MyTask());
+t.start();</div><p>Key concepts: synchronized keyword prevents race conditions. sleep() pauses a thread. join() waits for a thread to finish.</p>`},
+  {q:"What is the String pool in Java?",tags:["Advanced","Strings","Tricky"],ans:`<p>Java maintains a <strong style="font-weight:500">String pool</strong> (also called String intern pool) in the heap. When you create a String literal, Java first checks if that exact string already exists in the pool. If yes, it reuses it — doesn't create a new object.</p><div class="code">String a = "hello";    // created in string pool
+String b = "hello";    // reuses existing "hello" from pool
+String c = new String("hello");  // forces new object in heap, bypasses pool
+
+System.out.println(a == b);  // true — same object in pool
+System.out.println(a == c);  // false — c is a different object
+System.out.println(a.equals(c));  // true — same content</div><p>This is why you should always use .equals() to compare Strings — never ==. And why String is immutable in Java — it has to be, because the pool is shared.</p>`},
+];
+
+const codingQs=[
+  {q:"Write a Java program to check if a number is prime.",tags:["Coding","Loops"],ans:`<div class="code">public class PrimeCheck {
+    static boolean isPrime(int n) {
+        if (n &lt;= 1) return false;
+        if (n &lt;= 3) return true;
+        if (n % 2 == 0 || n % 3 == 0) return false;
+
+        // Check divisibility up to square root of n
+        for (int i = 5; i * i &lt;= n; i += 6) {
+            if (n % i == 0 || n % (i + 2) == 0) return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isPrime(7));   // true
+        System.out.println(isPrime(10));  // false
+        System.out.println(isPrime(97));  // true
+    }
+}</div><p><strong style="font-weight:500">Explain in interview:</strong> "We only need to check up to the square root of n, because if n has a factor larger than its square root, the corresponding smaller factor would already have been found."</p>`},
+  {q:"Reverse a string in Java.",tags:["Coding","Strings"],ans:`<div class="code">// Method 1: StringBuilder (cleanest)
+String original = "Aneesh";
+String reversed = new StringBuilder(original).reverse().toString();
+System.out.println(reversed);  // "hseanA"
+
+// Method 2: manual loop (shows you understand the logic)
+static String reverseManual(String s) {
+    char[] chars = s.toCharArray();
+    int left = 0, right = chars.length - 1;
+    while (left &lt; right) {
+        char temp = chars[left];
+        chars[left] = chars[right];
+        chars[right] = temp;
+        left++;
+        right--;
+    }
+    return new String(chars);
+}</div><p>Mention both approaches — use StringBuilder in real code, but show you can do it manually to prove you understand it.</p>`},
+  {q:"Check if a string is a palindrome.",tags:["Coding","Strings"],ans:`<div class="code">static boolean isPalindrome(String s) {
+    s = s.toLowerCase().replaceAll("[^a-z0-9]", ""); // clean input
+    int left = 0, right = s.length() - 1;
+    while (left &lt; right) {
+        if (s.charAt(left) != s.charAt(right)) return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+
+// Test
+System.out.println(isPalindrome("racecar"));  // true
+System.out.println(isPalindrome("Aneesh"));   // false
+System.out.println(isPalindrome("A man a plan a canal Panama")); // true</div>`},
+  {q:"Find the duplicate elements in an array.",tags:["Coding","Arrays","Collections"],ans:`<div class="code">import java.util.*;
+
+static List&lt;Integer&gt; findDuplicates(int[] arr) {
+    Set&lt;Integer&gt; seen = new HashSet&lt;&gt;();
+    Set&lt;Integer&gt; duplicates = new LinkedHashSet&lt;&gt;();
+
+    for (int num : arr) {
+        if (!seen.add(num)) {  // add returns false if already exists
+            duplicates.add(num);
+        }
+    }
+    return new ArrayList&lt;&gt;(duplicates);
+}
+
+// Test
+int[] arr = {1, 2, 3, 2, 4, 3, 5};
+System.out.println(findDuplicates(arr));  // [2, 3]</div><p>Explain: Set.add() returns false if the element already existed. So if add() returns false, it's a duplicate. O(n) time, O(n) space.</p>`},
+  {q:"Swap two numbers without a third variable.",tags:["Coding","Tricky"],ans:`<div class="code">// Method 1: arithmetic (can overflow for large numbers)
+int a = 10, b = 20;
+a = a + b;  // a = 30
+b = a - b;  // b = 10
+a = a - b;  // a = 20
+System.out.println(a + " " + b);  // 20 10
+
+// Method 2: XOR (no overflow, works for all integers)
+a = a ^ b;
+b = a ^ b;
+a = a ^ b;</div>`},
+  {q:"Write a Fibonacci series program.",tags:["Coding","Recursion"],ans:`<div class="code">// Iterative (efficient — O(n) time, O(1) space)
+static void fibonacci(int n) {
+    int a = 0, b = 1;
+    System.out.print(a + " " + b);
+    for (int i = 2; i &lt; n; i++) {
+        int c = a + b;
+        System.out.print(" " + c);
+        a = b;
+        b = c;
+    }
+}
+// fibonacci(8) → 0 1 1 2 3 5 8 13
+
+// Recursive (clean but slow — O(2^n) — only for small n)
+static int fib(int n) {
+    if (n &lt;= 1) return n;
+    return fib(n - 1) + fib(n - 2);
+}</div><p>Always mention both — then say "I'd use the iterative version in production because recursion here is exponential time and risks a StackOverflowError for large n."</p>`},
+  {q:"Count the frequency of each character in a string.",tags:["Coding","HashMap"],ans:`<div class="code">static Map&lt;Character, Integer&gt; charFrequency(String s) {
+    Map&lt;Character, Integer&gt; freq = new LinkedHashMap&lt;&gt;();
+    for (char c : s.toCharArray()) {
+        freq.put(c, freq.getOrDefault(c, 0) + 1);
+    }
+    return freq;
+}
+
+// Test
+System.out.println(charFrequency("aneesh"));
+// {a=1, n=1, e=2, s=1, h=1}</div><p>getOrDefault(key, defaultValue) returns the current count, or 0 if the key doesn't exist yet — cleaner than checking containsKey() first.</p>`},
+];
+
+function renderQs(containerId, questions) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = questions.map((item, i) => {
+    const id = containerId + '-' + i;
+    const tags = item.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    return `<div class="card">
+      <div class="q" onclick="tog('${id}')">
+        <i class="ti ti-circle-dot" aria-hidden="true" style="color:#534AB7;font-size:14px;margin-top:2px;flex-shrink:0"></i>
+        <span class="q-text">${item.q}</span>
+        <i class="ti ti-chevron-down chev" id="${id}-chev" aria-hidden="true"></i>
+      </div>
+      <div style="padding-left:22px;margin-top:4px">${tags}</div>
+      <div class="ans" id="${id}-ans">${item.ans}</div>
+    </div>`;
+  }).join('');
+}
+
+function tog(id) {
+  const ans = document.getElementById(id + '-ans');
+  const chev = document.getElementById(id + '-chev');
+  ans.classList.toggle('show');
+  if (chev) chev.classList.toggle('open');
+}
+
+function sw(name) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.getElementById('sec-' + name).classList.add('on');
+  const map = {roadmap:0,basics:1,oop:2,collections:3,exceptions:4,advanced:5,coding:6,scripts:7};
+  document.querySelectorAll('.tab')[map[name]].classList.add('on');
+}
+
+renderQs('basics-qs', basicsQs);
+renderQs('oop-qs', oopQs);
+renderQs('collections-qs', collectionsQs);
+renderQs('exceptions-qs', exceptionsQs);
+renderQs('advanced-qs', advancedQs);
+renderQs('coding-qs', codingQs);
+</script>

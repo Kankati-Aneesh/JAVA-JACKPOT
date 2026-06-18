@@ -1,0 +1,463 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.pg{font-family:var(--font-sans);padding:1rem 0}
+.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.25rem;border-bottom:.5px solid var(--color-border-tertiary);padding-bottom:.75rem}
+.tab{padding:6px 13px;border-radius:var(--border-radius-md);border:.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:12.5px;cursor:pointer;transition:all .15s}
+.tab.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489;font-weight:500}
+.sec{display:none}.sec.on{display:block}
+.explain{background:var(--color-background-secondary);border-left:3px solid #534AB7;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.875rem 1rem;font-size:14px;line-height:1.8;color:var(--color-text-primary);margin-bottom:1rem}
+.tip{background:#E1F5EE;border:.5px solid #9FE1CB;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13.5px;color:#085041;margin:.75rem 0;line-height:1.7}
+.warn{background:#FAEEDA;border:.5px solid #FAC775;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13.5px;color:#633806;margin:.75rem 0;line-height:1.7}
+.card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.9rem 1.1rem;margin-bottom:.75rem}
+.code{background:var(--color-background-secondary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:.875rem 1rem;font-family:var(--font-mono);font-size:12px;line-height:1.75;color:var(--color-text-primary);margin:.75rem 0;overflow-x:auto;white-space:pre}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:.75rem 0}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:.75rem 0}
+.mini-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.75rem 1rem}
+.mini-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.3rem;display:flex;align-items:center;gap:6px}
+.mini-body{font-size:12.5px;line-height:1.65;color:var(--color-text-secondary)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;font-weight:500}
+.bp{background:#EEEDFE;color:#3C3489}
+.bt{background:#E1F5EE;color:#085041}
+.ba{background:#FAEEDA;color:#633806}
+.bc{background:#FAECE7;color:#712B13}
+.bb{background:#E6F1FB;color:#0C447C}
+.bg{background:#EAF3DE;color:#27500A}
+.step-row{display:flex;gap:8px;margin-bottom:.65rem;align-items:flex-start}
+.sn{min-width:22px;height:22px;border-radius:50%;background:#EEEDFE;color:#3C3489;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.st{font-size:13.5px;line-height:1.7;color:var(--color-text-primary)}
+.hl{color:#534AB7;font-weight:500}
+.divider{border:none;border-top:.5px solid var(--color-border-tertiary);margin:1.25rem 0}
+.kw{color:#534AB7}.cls{color:#085041}.cmt{color:var(--color-text-secondary)}.str{color:#712B13}.ann{color:#633806}
+.concept-btn{display:block;width:100%;text-align:left;padding:.75rem 1rem;border-radius:var(--border-radius-md);border:.5px solid var(--color-border-secondary);background:var(--color-background-primary);cursor:pointer;margin-bottom:.5rem;font-size:13.5px;color:var(--color-text-primary);transition:all .15s}
+.concept-btn:hover{background:var(--color-background-secondary)}
+.concept-btn.on{background:#EEEDFE;border-color:#AFA9EC}
+.concept-detail{display:none;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;margin-bottom:.75rem;font-size:13.5px;line-height:1.75;color:var(--color-text-primary)}
+.concept-detail.show{display:block}
+@media(max-width:480px){.row,.row3{grid-template-columns:1fr}}
+</style>
+
+<h2 class="sr-only">Complete big-picture guide to the Spring ecosystem including Spring Boot, JPA, Hibernate, Maven, REST APIs, and microservices — explained simply for interview preparation</h2>
+
+<div class="pg">
+<div class="tabs">
+  <div class="tab on" onclick="sw('bigpic')">The big picture</div>
+  <div class="tab" onclick="sw('springs')">All the Springs</div>
+  <div class="tab" onclick="sw('rest')">What is REST?</div>
+  <div class="tab" onclick="sw('jpa')">JPA & Hibernate</div>
+  <div class="tab" onclick="sw('maven')">Maven</div>
+  <div class="tab" onclick="sw('micro')">Microservices</div>
+</div>
+
+<!-- TAB 1: BIG PICTURE -->
+<div id="sec-bigpic" class="sec on">
+  <div class="explain">
+    You're confused because everyone throws all these words at you without first answering: <span class="hl">what problem are we even solving?</span><br><br>
+    Here's the answer: when you build a web application — like Swiggy, Instagram, or a banking app — your code needs to do several things at once: handle user requests from a browser, run business logic, save data to a database, and keep everything secure. Each of these is a hard problem. Spring is a collection of tools that solves each one.
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 370" role="img">
+    <title>A web application needs to handle requests, process logic, store data, and stay secure — Spring provides tools for each</title>
+    <desc>Central box labelled Your web app with four surrounding boxes: Handle HTTP requests solved by Spring MVC and Spring Boot, Business logic solved by Spring Core and IoC, Save data to database solved by Spring Data and JPA and Hibernate, and Keep it secure solved by Spring Security.</desc>
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+    <g class="c-gray">
+      <rect x="240" y="155" width="200" height="60" rx="10" stroke-width="0.5"/>
+      <text class="th" x="340" y="179" text-anchor="middle" dominant-baseline="central">Your web app</text>
+      <text class="ts" x="340" y="199" text-anchor="middle" dominant-baseline="central">needs all 4 of these</text>
+    </g>
+
+    <g class="c-purple">
+      <rect x="40" y="30" width="190" height="64" rx="8" stroke-width="0.5"/>
+      <text class="th" x="135" y="52" text-anchor="middle" dominant-baseline="central">Handle HTTP requests</text>
+      <text class="ts" x="135" y="72" text-anchor="middle" dominant-baseline="central">Spring MVC + Spring Boot</text>
+    </g>
+    <line x1="230" y1="75" x2="248" y2="165" stroke="#534AB7" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+
+    <g class="c-teal">
+      <rect x="450" y="30" width="190" height="64" rx="8" stroke-width="0.5"/>
+      <text class="th" x="545" y="52" text-anchor="middle" dominant-baseline="central">Business logic</text>
+      <text class="ts" x="545" y="72" text-anchor="middle" dominant-baseline="central">Spring Core, IoC, DI</text>
+    </g>
+    <line x1="450" y1="75" x2="432" y2="165" stroke="#0F6E56" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+
+    <g class="c-amber">
+      <rect x="40" y="276" width="190" height="64" rx="8" stroke-width="0.5"/>
+      <text class="th" x="135" y="298" text-anchor="middle" dominant-baseline="central">Save data to DB</text>
+      <text class="ts" x="135" y="318" text-anchor="middle" dominant-baseline="central">Spring Data, JPA, Hibernate</text>
+    </g>
+    <line x1="230" y1="295" x2="248" y2="215" stroke="#854F0B" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+
+    <g class="c-coral">
+      <rect x="450" y="276" width="190" height="64" rx="8" stroke-width="0.5"/>
+      <text class="th" x="545" y="298" text-anchor="middle" dominant-baseline="central">Keep it secure</text>
+      <text class="ts" x="545" y="318" text-anchor="middle" dominant-baseline="central">Spring Security</text>
+    </g>
+    <line x1="450" y1="295" x2="432" y2="215" stroke="#993C1D" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+
+    <text class="ts" x="340" y="352" text-anchor="middle" fill="var(--color-text-secondary)">Spring is NOT one thing — it's a family of tools, each solving one problem</text>
+  </svg>
+
+  <div class="warn">
+    <span style="font-weight:500">Why it feels overwhelming:</span> People say "Spring" but mean different things — sometimes Spring Core (the IoC container), sometimes Spring Boot (the setup tool), sometimes the entire ecosystem. Once you know each one has a specific job, it stops being scary.
+  </div>
+
+  <div class="tip">
+    <span style="font-weight:500">Is Spring only for web apps?</span> No! Spring can be used for any Java application — batch processing, command-line tools, data pipelines, scheduled jobs. But its most popular use is building web applications and REST APIs, so that's what most tutorials focus on.
+  </div>
+</div>
+
+<!-- TAB 2: ALL THE SPRINGS -->
+<div id="sec-springs" class="sec">
+  <div class="explain">
+    Think of Spring like a hospital. The hospital itself is Spring Framework — the building and basic infrastructure. Inside, there are different departments for different problems. Each department is a Spring module. You only go to the department you need.
+  </div>
+
+  <div id="concept-list">
+
+  <button class="concept-btn" onclick="tog('spring-core')">
+    <span class="badge bp" style="margin-right:8px">Spring Core</span>
+    The foundation — IoC container, Dependency Injection. Everything else is built on this.
+  </button>
+  <div class="concept-detail" id="spring-core">
+    Spring Core is the heart of the entire Spring ecosystem. It provides the IoC (Inversion of Control) container — the thing that creates and manages all your objects (Beans) and injects dependencies. When people say "Spring" and mean the concept, this is it. Every other Spring module is built on top of Spring Core. You already learned this — @Component, @Autowired, @Service — that's all Spring Core.
+  </div>
+
+  <button class="concept-btn" onclick="tog('spring-boot')">
+    <span class="badge bt" style="margin-right:8px">Spring Boot</span>
+    Not a new Spring — it's Spring with zero setup. Auto-configures everything for you.
+  </button>
+  <div class="concept-detail" id="spring-boot">
+    Spring Boot is NOT a separate framework. It's a tool that sits on top of Spring and eliminates all the manual configuration. Before Spring Boot, you spent hours writing XML config files just to say "hello world." Spring Boot detects what you have and sets it all up automatically. In 2024, almost nobody uses plain Spring without Boot. When someone says "I use Spring," they almost certainly mean Spring Boot.
+    <div class="code" style="margin-top:.75rem"><span class="cmt">// Plain Spring: 200+ lines of config XML + setup code
+// Spring Boot: this is ALL you need to start a web server</span>
+<span class="ann">@SpringBootApplication</span>
+<span class="kw">public class</span> <span class="cls">App</span> {
+    <span class="kw">public static void</span> main(<span class="cls">String</span>[] args) {
+        SpringApplication.run(<span class="cls">App</span>.<span class="kw">class</span>, args);
+    }
+}</div>
+  </div>
+
+  <button class="concept-btn" onclick="tog('spring-mvc')">
+    <span class="badge ba" style="margin-right:8px">Spring MVC</span>
+    Handles HTTP requests. The web layer — URLs, controllers, responses.
+  </button>
+  <div class="concept-detail" id="spring-mvc">
+    MVC stands for Model-View-Controller. It's the part of Spring that handles incoming web requests. When a browser or app calls your URL, Spring MVC receives it, routes it to the right @Controller method, runs your code, and sends back a response. In the old days, the "View" was an HTML page. Today, for REST APIs, the "View" is just JSON data — which is why @RestController exists (it skips the HTML rendering and returns data directly). Spring MVC is automatically included when you add spring-boot-starter-web.
+  </div>
+
+  <button class="concept-btn" onclick="tog('spring-data')">
+    <span class="badge bb" style="margin-right:8px">Spring Data</span>
+    Database access made easy. Write zero SQL for basic operations.
+  </button>
+  <div class="concept-detail" id="spring-data">
+    Spring Data dramatically simplifies database access. Without it, you write boilerplate code for every single database operation — connect, prepare statement, execute, handle results, close connection. Spring Data gives you a repository interface where you just define what you want and Spring writes the implementation for you.
+    <div class="code" style="margin-top:.75rem"><span class="cmt">// No SQL needed — Spring Data generates all of this automatically</span>
+<span class="kw">public interface</span> <span class="cls">UserRepository</span> <span class="kw">extends</span> <span class="cls">JpaRepository</span>&lt;<span class="cls">User</span>, <span class="cls">Integer</span>&gt; {
+    <span class="cls">User</span> findByEmail(<span class="cls">String</span> email);        <span class="cmt">// auto-generates SELECT WHERE email=?</span>
+    <span class="cls">List</span>&lt;<span class="cls">User</span>&gt; findByCity(<span class="cls">String</span> city);   <span class="cmt">// auto-generates SELECT WHERE city=?</span>
+}
+<span class="cmt">// save(), findById(), findAll(), delete() — all free, no code needed</span></div>
+  </div>
+
+  <button class="concept-btn" onclick="tog('spring-security')">
+    <span class="badge bc" style="margin-right:8px">Spring Security</span>
+    Login, logout, permissions, JWT tokens. Protects your app from unauthorized access.
+  </button>
+  <div class="concept-detail" id="spring-security">
+    Spring Security handles authentication (who are you?) and authorization (what are you allowed to do?). Without it, anyone could call any URL in your app. With Spring Security, you can: require login before accessing certain URLs, define roles (ADMIN, USER) and restrict endpoints by role, integrate with Google/Facebook login (OAuth2), and use JWT tokens for stateless authentication in REST APIs. Just adding the Spring Security dependency immediately blocks all endpoints by default until you configure it.
+  </div>
+
+  <button class="concept-btn" onclick="tog('spring-cloud')">
+    <span class="badge bg" style="margin-right:8px">Spring Cloud</span>
+    For microservices — service discovery, load balancing, config management.
+  </button>
+  <div class="concept-detail" id="spring-cloud">
+    Spring Cloud is a set of tools for building distributed systems (multiple small services talking to each other — microservices). It provides: service discovery (Eureka — services find each other automatically), API Gateway (one entry point for all services), distributed config (one place to manage config for all services), circuit breaker (if one service fails, don't cascade the failure). You only need Spring Cloud when you're building a microservices architecture. For a single application, you don't need it.
+  </div>
+
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">Which ones will you use as a data analyst / junior dev?</div>
+  <div class="row">
+    <div class="mini-card">
+      <div class="mini-title"><i class="ti ti-check" style="color:#0F6E56;font-size:16px" aria-hidden="true"></i>You'll definitely use these</div>
+      <div class="mini-body">Spring Boot, Spring Core (IoC/DI), Spring MVC (@RestController), Spring Data (JPA repositories)</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-title"><i class="ti ti-clock" style="color:#633806;font-size:16px" aria-hidden="true"></i>You'll encounter these later</div>
+      <div class="mini-body">Spring Security (once you add login features), Spring Cloud (only in large microservices architectures)</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3: REST API -->
+<div id="sec-rest" class="sec">
+  <div class="explain">
+    A REST API is simply a way for two programs to talk to each other over the internet using standard web language (HTTP). That's it. It's not specific to Spring — REST is a concept, Spring Boot is just the tool you use to build one in Java.
+  </div>
+
+  <div class="card">
+    <div class="mini-title" style="font-size:14px;margin-bottom:.75rem">The real-world analogy — a restaurant</div>
+    <div class="row" style="margin:0">
+      <div class="mini-card">
+        <div class="mini-title"><i class="ti ti-user" style="font-size:16px;color:#534AB7" aria-hidden="true"></i>You (the customer)</div>
+        <div class="mini-body">= the frontend app or mobile app. Makes requests: "I want to see the menu."</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title"><i class="ti ti-building" style="font-size:16px;color:#534AB7" aria-hidden="true"></i>The kitchen</div>
+        <div class="mini-body">= your Spring Boot REST API. Receives orders, processes them, returns results.</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title"><i class="ti ti-clipboard-list" style="font-size:16px;color:#534AB7" aria-hidden="true"></i>The menu</div>
+        <div class="mini-body">= your API endpoints. A list of things the customer can ask for: GET /menu, POST /order.</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title"><i class="ti ti-package" style="font-size:16px;color:#534AB7" aria-hidden="true"></i>The food format</div>
+        <div class="mini-body">= JSON. The standard format data is sent in. Everyone agrees on this format so any app can read it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">HTTP methods = what action you want</div>
+
+  <div class="row3">
+    <div class="mini-card">
+      <div class="mini-title"><span class="badge bt">GET</span></div>
+      <div class="mini-body">Fetch/read data. GET /users gives you a list of users. GET /users/5 gives user with id 5. No changes made.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-title"><span class="badge bp">POST</span></div>
+      <div class="mini-body">Create something new. POST /users with JSON body creates a new user. The body contains the data to create.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-title"><span class="badge ba">PUT</span></div>
+      <div class="mini-body">Update something existing. PUT /users/5 with new data updates user 5 completely.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-title"><span class="badge bc">DELETE</span></div>
+      <div class="mini-body">Remove something. DELETE /users/5 deletes user 5. Simple and destructive.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-title"><span class="badge bb">PATCH</span></div>
+      <div class="mini-body">Partially update something. Like PUT but only changes the fields you send — not a full replacement.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.5rem">What does a REST API conversation actually look like?</div>
+
+  <div class="code"><span class="cmt">— Request (client → server) ————————————————————</span>
+GET /api/users/42
+Host: myapp.com
+Authorization: Bearer eyJhbGc...
+
+<span class="cmt">— Response (server → client) ————————————————————</span>
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": 42,
+  "name": "Aneesh",
+  "email": "aneesh@email.com",
+  "city": "Vijayawada"
+}
+
+<span class="cmt">— Another example: creating a user ——————————————</span>
+POST /api/users
+Content-Type: application/json
+
+{ "name": "Aneesh", "email": "aneesh@email.com" }
+
+<span class="cmt">— Server responds with 201 Created ——————————————</span>
+HTTP/1.1 201 Created
+{ "id": 43, "name": "Aneesh", "email": "aneesh@email.com" }</div>
+
+  <div class="tip">Spring Boot makes building this trivial. The @RestController handles routing, @RequestBody converts JSON to Java objects, and Spring automatically converts your return values back to JSON. You write business logic; Spring handles the HTTP conversation.</div>
+</div>
+
+<!-- TAB 4: JPA & HIBERNATE -->
+<div id="sec-jpa" class="sec">
+  <div class="explain">
+    This is where most beginners get confused. JPA, Hibernate, Spring Data — three different names that all relate to the same thing: <span class="hl">saving Java objects to a database and reading them back.</span> Here's how they relate:
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 220" role="img">
+    <title>Relationship between JPA, Hibernate, and Spring Data — three layers stacked on top of each other</title>
+    <desc>Three horizontal layers stacked vertically. Top layer is Spring Data JPA — the easiest level, just define an interface. Middle layer is JPA — the standard rules and specification. Bottom layer is Hibernate — the actual engine doing the real work.</desc>
+    <g class="c-purple">
+      <rect x="80" y="30" width="520" height="50" rx="8" stroke-width="0.5"/>
+      <text class="th" x="340" y="50" text-anchor="middle" dominant-baseline="central">Spring Data JPA</text>
+      <text class="ts" x="340" y="68" text-anchor="middle" dominant-baseline="central">the easiest level — just define an interface, Spring does the rest</text>
+    </g>
+    <g class="c-teal">
+      <rect x="80" y="95" width="520" height="50" rx="8" stroke-width="0.5"/>
+      <text class="th" x="340" y="115" text-anchor="middle" dominant-baseline="central">JPA (Java Persistence API)</text>
+      <text class="ts" x="340" y="133" text-anchor="middle" dominant-baseline="central">the standard rules — a specification, not code itself</text>
+    </g>
+    <g class="c-amber">
+      <rect x="80" y="160" width="520" height="50" rx="8" stroke-width="0.5"/>
+      <text class="th" x="340" y="180" text-anchor="middle" dominant-baseline="central">Hibernate</text>
+      <text class="ts" x="340" y="198" text-anchor="middle" dominant-baseline="central">the actual engine — does the real work, generates SQL, talks to database</text>
+    </g>
+  </svg>
+
+  <div class="step-row" style="margin-top:1rem"><span class="sn">1</span><span class="st"><span class="hl">The Problem:</span> You have a Java object — a User with name, email, age. You want to save it to a MySQL table. But Java objects and database tables are completely different things. Converting between them manually is painful and repetitive. This is called the "object-relational impedance mismatch."</span></div>
+  <div class="step-row"><span class="sn">2</span><span class="st"><span class="hl">Hibernate solves it</span> — Hibernate is an ORM (Object-Relational Mapper). It automatically converts your Java objects to database rows and back. You work with Java objects; Hibernate handles the SQL behind the scenes. You annotate your class with @Entity and @Column and Hibernate does the rest.</span></div>
+  <div class="step-row"><span class="sn">3</span><span class="st"><span class="hl">JPA is the standard</span> — JPA (Java Persistence API) is a specification (a set of rules and interfaces) that defines HOW an ORM should work. It's not code itself — it's just the contract. Hibernate is the most popular implementation of JPA. Think: JPA is like the "USB standard", Hibernate is like a specific USB cable brand.</span></div>
+  <div class="step-row"><span class="sn">4</span><span class="st"><span class="hl">Spring Data JPA makes it even easier</span> — Spring Data JPA sits on top of JPA/Hibernate and gives you repositories. You declare an interface extending JpaRepository, and Spring Boot auto-generates all the CRUD code. You don't write a single SQL query for basic operations.</span></div>
+
+  <div class="code"><span class="cmt">// Step 1: Mark your class as a database entity</span>
+<span class="ann">@Entity</span>
+<span class="ann">@Table</span>(name = <span class="str">"users"</span>)
+<span class="kw">public class</span> <span class="cls">User</span> {
+    <span class="ann">@Id</span>
+    <span class="ann">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+    <span class="kw">private int</span> id;        <span class="cmt">// maps to id column, auto-increment</span>
+
+    <span class="ann">@Column</span>(name = <span class="str">"name"</span>)
+    <span class="kw">private</span> <span class="cls">String</span> name;  <span class="cmt">// maps to name column</span>
+
+    <span class="kw">private</span> <span class="cls">String</span> email; <span class="cmt">// column name defaults to "email"</span>
+}
+
+<span class="cmt">// Step 2: Create a repository interface — Spring generates the implementation</span>
+<span class="kw">public interface</span> <span class="cls">UserRepository</span> <span class="kw">extends</span> <span class="cls">JpaRepository</span>&lt;<span class="cls">User</span>, <span class="cls">Integer</span>&gt; {
+    <span class="cmt">// These methods are FREE — Spring Data writes the SQL automatically:</span>
+    <span class="cmt">// save(user), findById(id), findAll(), delete(user), count()</span>
+    
+    <span class="cls">List</span>&lt;<span class="cls">User</span>&gt; findByName(<span class="cls">String</span> name); <span class="cmt">// SELECT * FROM users WHERE name=?</span>
+}
+
+<span class="cmt">// Step 3: Inject and use it anywhere</span>
+<span class="ann">@Service</span>
+<span class="kw">class</span> <span class="cls">UserService</span> {
+    <span class="ann">@Autowired</span> <span class="cls">UserRepository</span> repo;
+
+    <span class="kw">void</span> example() {
+        repo.save(<span class="kw">new</span> <span class="cls">User</span>(<span class="str">"Aneesh"</span>, <span class="str">"a@b.com"</span>)); <span class="cmt">// INSERT INTO users...</span>
+        <span class="cls">List</span>&lt;<span class="cls">User</span>&gt; all = repo.findAll();           <span class="cmt">// SELECT * FROM users</span>
+        repo.deleteById(5);                          <span class="cmt">// DELETE FROM users WHERE id=5</span>
+    }
+}</div>
+
+  <div class="tip"><span style="font-weight:500">Interview one-liner:</span> "JPA is the specification that defines how Java objects map to database tables. Hibernate is the most popular implementation of JPA — it's the actual ORM engine that generates and executes SQL. Spring Data JPA wraps Hibernate and provides repository interfaces so I can do database operations without writing boilerplate code."</div>
+</div>
+
+<!-- TAB 5: MAVEN -->
+<div id="sec-maven" class="sec">
+  <div class="explain">
+    Imagine you're building a house. You need bricks, cement, pipes, wires — you don't make these yourself, you order them from suppliers. <span class="hl">Maven is the supplier system for Java projects.</span> It downloads libraries (called dependencies) your project needs, manages their versions, and builds your project into a runnable file.
+  </div>
+
+  <div class="step-row"><span class="sn">1</span><span class="st"><span class="hl">What problem does it solve?</span> Your Spring Boot project needs dozens of libraries — Spring, Hibernate, Jackson (JSON), database drivers. Without Maven, you'd manually download each one, figure out compatible versions, add them to your project. Maven does all of this automatically from one config file.</span></div>
+  <div class="step-row"><span class="sn">2</span><span class="st"><span class="hl">pom.xml</span> is Maven's config file. You declare what you need, Maven downloads it. That's the entire mental model.</span></div>
+  <div class="step-row"><span class="sn">3</span><span class="st"><span class="hl">Gradle</span> is the other popular alternative to Maven. Same concept, different syntax. Spring Boot works with both. Maven uses XML (pom.xml), Gradle uses Groovy/Kotlin (build.gradle).</span></div>
+
+  <div class="code"><span class="cmt">/* pom.xml — Maven's config file for your project */</span>
+&lt;dependencies&gt;
+
+    <span class="cmt">&lt;!-- One line pulls in: Spring MVC + Tomcat server + JSON support --&gt;</span>
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    <span class="cmt">&lt;!-- One line pulls in: Spring Data + JPA + Hibernate + connection pool --&gt;</span>
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    <span class="cmt">&lt;!-- MySQL database driver --&gt;</span>
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+
+<span class="cmt">/* Maven reads this, downloads everything, and makes it available in your code.
+   These "starters" are Spring Boot's magic bundles — one dependency = many libraries. */</span></div>
+
+  <div class="warn"><span style="font-weight:500">Interview question: "What is Maven?"</span> — "Maven is a build tool and dependency manager for Java projects. I declare the libraries my project needs in pom.xml, and Maven automatically downloads them from the Maven Central Repository and adds them to the project classpath. It also compiles the project and packages it into a deployable JAR file."</div>
+</div>
+
+<!-- TAB 6: MICROSERVICES -->
+<div id="sec-micro" class="sec">
+  <div class="explain">
+    Before microservices, apps were built as one big program — called a <span class="hl">monolith</span>. Everything is in one place. This is fine when starting out. But as the app grows, one tiny change requires re-testing and re-deploying the entire thing. Teams step on each other's code. If one feature crashes, the whole app goes down.<br><br>
+    <span class="hl">Microservices splits the app into many small, independent services.</span> Each service does one thing, has its own database, runs separately, and talks to others via REST APIs.
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 290" role="img">
+    <title>Monolith vs microservices architecture comparison</title>
+    <desc>Left side shows a single large box labelled Monolith containing all features together. Right side shows five small separate boxes each for one feature: users, orders, payments, notifications, products — each is a separate service.</desc>
+    <defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+    <text class="ts" x="150" y="22" text-anchor="middle" fill="var(--color-text-secondary)">Monolith</text>
+    <g class="c-coral"><rect x="50" y="34" width="200" height="220" rx="10" stroke-width="0.5"/>
+    <text class="ts" x="150" y="82" text-anchor="middle" fill="#712B13">Users</text>
+    <text class="ts" x="150" y="112" text-anchor="middle" fill="#712B13">Orders</text>
+    <text class="ts" x="150" y="142" text-anchor="middle" fill="#712B13">Payments</text>
+    <text class="ts" x="150" y="172" text-anchor="middle" fill="#712B13">Notifications</text>
+    <text class="ts" x="150" y="202" text-anchor="middle" fill="#712B13">Products</text>
+    <text class="th" x="150" y="236" text-anchor="middle" fill="#993C1D">all in one app</text></g>
+
+    <text class="ts" x="340" y="148" text-anchor="middle" fill="var(--color-text-secondary)">→</text>
+
+    <text class="ts" x="540" y="22" text-anchor="middle" fill="var(--color-text-secondary)">Microservices</text>
+    <g class="c-teal"><rect x="410" y="34" width="110" height="44" rx="6" stroke-width="0.5"/>
+    <text class="th" x="465" y="56" text-anchor="middle" dominant-baseline="central">Users service</text></g>
+    <g class="c-teal"><rect x="540" y="34" width="110" height="44" rx="6" stroke-width="0.5"/>
+    <text class="th" x="595" y="56" text-anchor="middle" dominant-baseline="central">Orders service</text></g>
+    <g class="c-teal"><rect x="410" y="92" width="110" height="44" rx="6" stroke-width="0.5"/>
+    <text class="th" x="465" y="114" text-anchor="middle" dominant-baseline="central">Payments</text></g>
+    <g class="c-teal"><rect x="540" y="92" width="110" height="44" rx="6" stroke-width="0.5"/>
+    <text class="th" x="595" y="114" text-anchor="middle" dominant-baseline="central">Notifications</text></g>
+    <g class="c-teal"><rect x="475" y="150" width="110" height="44" rx="6" stroke-width="0.5"/>
+    <text class="th" x="530" y="172" text-anchor="middle" dominant-baseline="central">Products</text></g>
+
+    <text class="ts" x="530" y="222" text-anchor="middle" fill="var(--color-text-secondary)">each runs independently</text>
+    <text class="ts" x="530" y="240" text-anchor="middle" fill="var(--color-text-secondary)">talks via REST APIs</text>
+    <text class="ts" x="530" y="258" text-anchor="middle" fill="var(--color-text-secondary)">has its own database</text>
+  </svg>
+
+  <div class="row" style="margin-top:1rem">
+    <div class="mini-card">
+      <div class="mini-title" style="color:#085041"><i class="ti ti-check" style="font-size:16px;margin-right:4px" aria-hidden="true"></i>Microservices benefits</div>
+      <div class="mini-body">Each service deploys independently. Teams work without stepping on each other. One service crashes — others keep running. Scale only the part that's under load.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-title" style="color:#712B13"><i class="ti ti-alert-triangle" style="font-size:16px;margin-right:4px" aria-hidden="true"></i>Microservices challenges</div>
+      <div class="mini-body">Way more complex to set up, deploy, and monitor. Services must find each other (service discovery). Network failures between services. Not suitable for small teams or small apps.</div>
+    </div>
+  </div>
+
+  <div class="warn"><span style="font-weight:500">Real talk for your interview:</span> Microservices is an architecture pattern, not a technology. Spring Boot is used to build each individual microservice. Spring Cloud provides the tools that make microservices work together (service discovery, API gateway, etc.). For a fresher interview, just knowing this conceptual difference is enough — you don't need to have built one.</div>
+
+  <div class="tip"><span style="font-weight:500">Interview answer:</span> "Microservices is an architectural approach where a large application is broken into small, independent services that each handle a specific business capability. Each service has its own database and communicates with others via REST APIs. Spring Boot is commonly used to build individual microservices, and Spring Cloud provides tools like Eureka for service discovery and Spring Gateway as an API gateway. The benefit over a monolith is independent deployment, better fault isolation, and team scalability — at the cost of increased operational complexity."</div>
+</div>
+</div>
+
+<script>
+function sw(name){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('sec-'+name).classList.add('on');
+  const m={bigpic:0,springs:1,rest:2,jpa:3,maven:4,micro:5};
+  document.querySelectorAll('.tab')[m[name]].classList.add('on');
+}
+function tog(id){
+  const el=document.getElementById(id);
+  const btn=el.previousElementSibling;
+  const isOpen=el.classList.contains('show');
+  document.querySelectorAll('.concept-detail').forEach(d=>d.classList.remove('show'));
+  document.querySelectorAll('.concept-btn').forEach(b=>b.classList.remove('on'));
+  if(!isOpen){el.classList.add('show');btn.classList.add('on');}
+}
+</script>

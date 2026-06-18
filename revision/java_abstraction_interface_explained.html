@@ -1,0 +1,401 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.pg{font-family:var(--font-sans);padding:1rem 0}
+.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.25rem;border-bottom:.5px solid var(--color-border-tertiary);padding-bottom:.75rem}
+.tab{padding:6px 14px;border-radius:var(--border-radius-md);border:.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.tab.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489;font-weight:500}
+.sec{display:none}.sec.on{display:block}
+.explain{background:var(--color-background-secondary);border-left:3px solid #534AB7;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.875rem 1rem;font-size:14px;line-height:1.8;color:var(--color-text-primary);margin-bottom:1rem}
+.code{background:var(--color-background-secondary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:.875rem 1rem;font-family:var(--font-mono);font-size:12.5px;line-height:1.75;color:var(--color-text-primary);margin:.75rem 0;overflow-x:auto;white-space:pre}
+.rule{background:#FAEEDA;border:.5px solid #FAC775;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13.5px;color:#633806;margin:.75rem 0;line-height:1.7}
+.tip{background:#E1F5EE;border:.5px solid #9FE1CB;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13.5px;color:#085041;margin:.75rem 0;line-height:1.7}
+.warn{background:#FAECE7;border:.5px solid #F0997B;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13.5px;color:#712B13;margin:.75rem 0;line-height:1.7}
+.row{display:flex;gap:12px;margin:.75rem 0}
+.col{flex:1;min-width:0}
+.card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.1rem}
+.card-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.5rem;display:flex;align-items:center;gap:6px}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;font-weight:500}
+.bp{background:#EEEDFE;color:#3C3489}
+.bt{background:#E1F5EE;color:#085041}
+.ba{background:#FAEEDA;color:#633806}
+.bc{background:#FAECE7;color:#712B13}
+.step-row{display:flex;gap:8px;margin-bottom:.65rem;align-items:flex-start}
+.sn{min-width:22px;height:22px;border-radius:50%;background:#EEEDFE;color:#3C3489;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.st{font-size:13.5px;line-height:1.7;color:var(--color-text-primary)}
+.hl{color:#534AB7;font-weight:500}
+.green{color:#0F6E56;font-weight:500}
+.cmt{color:#888780}
+.kw{color:#534AB7}
+.cls{color:#085041}
+.str{color:#712B13}
+.divider{border:none;border-top:.5px solid var(--color-border-tertiary);margin:1.25rem 0}
+.quiz-btn{padding:7px 14px;border-radius:var(--border-radius-md);border:.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;margin:4px;display:inline-block}
+.quiz-btn.correct{background:#E1F5EE;border-color:#5DCAA5;color:#085041}
+.quiz-btn.wrong{background:#FAECE7;border-color:#F0997B;color:#712B13}
+.quiz-out{font-size:13px;margin-top:.6rem;min-height:20px;color:var(--color-text-secondary)}
+</style>
+
+<h2 class="sr-only">Step-by-step visual explanation of abstraction, abstract classes, and interfaces in Java</h2>
+
+<div class="pg">
+<div class="tabs">
+  <div class="tab on" onclick="sw('abs')">What is abstraction?</div>
+  <div class="tab" onclick="sw('abscls')">Abstract class</div>
+  <div class="tab" onclick="sw('iface')">Interface</div>
+  <div class="tab" onclick="sw('diff')">Abstract vs Interface</div>
+  <div class="tab" onclick="sw('quiz')">Quick quiz</div>
+</div>
+
+<!-- TAB 1: ABSTRACTION -->
+<div id="sec-abs" class="sec on">
+  <div class="explain">
+    <span class="hl">Abstraction = hiding HOW, showing WHAT.</span><br><br>
+    Think about driving a car. You press the accelerator and the car moves. You don't know — and don't need to know — how the fuel injectors fire, how the pistons move, how the gearbox shifts. All of that complexity is <em>hidden</em>. You only see the simple interface: accelerator, brake, steering wheel.<br><br>
+    That's abstraction. In Java, it means: <span class="hl">define what an object should do — but hide the implementation details of how it does it.</span>
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 220" role="img">
+    <title>Abstraction analogy: car pedals hide engine complexity</title>
+    <desc>Left side shows the user-facing view: accelerator, brake, steering wheel. Right side shows the hidden complexity: pistons, fuel injectors, ECU. An arrow labelled 'abstracts away' separates them.</desc>
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+    <g class="c-teal">
+      <rect x="40" y="40" width="230" height="150" rx="12" stroke-width="0.5"/>
+      <text class="th" x="155" y="68" text-anchor="middle" dominant-baseline="central">What you see</text>
+      <text class="ts" x="155" y="90" text-anchor="middle" dominant-baseline="central">simple, clean interface</text>
+    </g>
+    <g class="c-teal"><rect x="65" y="108" width="175" height="36" rx="6" stroke-width="0.5"/><text class="ts" x="152" y="126" text-anchor="middle" dominant-baseline="central">accelerator / brake / wheel</text></g>
+    <g class="c-teal"><rect x="65" y="152" width="175" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="152" y="166" text-anchor="middle" dominant-baseline="central">just press and it works</text></g>
+
+    <line x1="272" y1="115" x2="348" y2="115" stroke="#534AB7" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text class="ts" x="310" y="106" text-anchor="middle" fill="var(--color-text-secondary)">hides</text>
+
+    <g class="c-gray">
+      <rect x="355" y="40" width="285" height="150" rx="12" stroke-width="0.5"/>
+      <text class="th" x="497" y="68" text-anchor="middle" dominant-baseline="central">What is hidden</text>
+      <text class="ts" x="497" y="90" text-anchor="middle" dominant-baseline="central">complex implementation</text>
+    </g>
+    <g class="c-gray"><rect x="375" y="108" width="245" height="36" rx="6" stroke-width="0.5"/><text class="ts" x="497" y="126" text-anchor="middle" dominant-baseline="central">fuel injectors, pistons, ECU</text></g>
+    <g class="c-gray"><rect x="375" y="152" width="245" height="28" rx="6" stroke-width="0.5"/><text class="ts" x="497" y="166" text-anchor="middle" dominant-baseline="central">thousands of lines of logic</text></g>
+  </svg>
+
+  <div class="rule">
+    In Java, abstraction is achieved in two ways:<br>
+    <span style="font-weight:500">1. Abstract classes</span> — a class that can't be instantiated, forces subclasses to fill in details.<br>
+    <span style="font-weight:500">2. Interfaces</span> — a pure contract. Just method names, no code. Every implementer must provide the code.
+  </div>
+
+  <div class="step-row"><span class="sn">1</span><span class="st">You define a method name and what it should do — but leave the body empty.</span></div>
+  <div class="step-row"><span class="sn">2</span><span class="st">Every subclass or implementer is <span class="hl">forced</span> to provide the actual code.</span></div>
+  <div class="step-row"><span class="sn">3</span><span class="st">The person using your class doesn't need to know HOW it works — just THAT it works.</span></div>
+</div>
+
+<!-- TAB 2: ABSTRACT CLASS -->
+<div id="sec-abscls" class="sec">
+  <div class="explain">
+    An <span class="hl">abstract class</span> is a half-built class. It has some methods already written (concrete methods), and some methods that are intentionally left empty (abstract methods) for subclasses to fill in.<br><br>
+    You cannot create an object directly from an abstract class. It exists only to be <em>extended</em>.
+  </div>
+
+  <div class="explain" style="border-left-color:#0F6E56">
+    <span class="hl">Real world analogy:</span> Think of an abstract class like a <span class="hl">house blueprint</span> that already has the walls and roof drawn (concrete methods), but has blank boxes labelled "design this room yourself" (abstract methods). Every house built from that blueprint must fill in those blank rooms. But you can't live in the blueprint itself — you need an actual house.
+  </div>
+
+  <div class="code"><span class="cmt">// Abstract class — half built. Can't do: new Shape()</span>
+<span class="kw">abstract class</span> <span class="cls">Shape</span> {
+
+    <span class="cmt">// Abstract method — no body, no code. Must be overridden.</span>
+    <span class="kw">abstract double</span> area();
+    <span class="kw">abstract double</span> perimeter();
+
+    <span class="cmt">// Concrete method — already implemented. Subclasses inherit this free.</span>
+    <span class="kw">void</span> describe() {
+        System.out.println(<span class="str">"Area: "</span> + area() + <span class="str">", Perimeter: "</span> + perimeter());
+    }
+}
+
+<span class="cmt">// Subclass MUST implement area() and perimeter() — or it won't compile</span>
+<span class="kw">class</span> <span class="cls">Circle</span> <span class="kw">extends</span> <span class="cls">Shape</span> {
+    <span class="kw">double</span> radius;
+    <span class="cls">Circle</span>(<span class="kw">double</span> r) { <span class="kw">this</span>.radius = r; }
+
+    <span class="kw">double</span> area()      { <span class="kw">return</span> 3.14 * radius * radius; }
+    <span class="kw">double</span> perimeter() { <span class="kw">return</span> 2 * 3.14 * radius; }
+}
+
+<span class="kw">class</span> <span class="cls">Rectangle</span> <span class="kw">extends</span> <span class="cls">Shape</span> {
+    <span class="kw">double</span> w, h;
+    <span class="cls">Rectangle</span>(<span class="kw">double</span> w, <span class="kw">double</span> h) { <span class="kw">this</span>.w = w; <span class="kw">this</span>.h = h; }
+
+    <span class="kw">double</span> area()      { <span class="kw">return</span> w * h; }
+    <span class="kw">double</span> perimeter() { <span class="kw">return</span> 2 * (w + h); }
+}
+
+<span class="cmt">// Usage</span>
+<span class="cls">Shape</span> s = <span class="kw">new</span> <span class="cls">Circle</span>(5);
+s.describe();  <span class="cmt">// Area: 78.5, Perimeter: 31.4 — uses Circle's area()</span>
+
+<span class="cmt">// Shape s = new Shape();  ← COMPILE ERROR. Can't instantiate abstract class!</span></div>
+
+  <div class="divider"></div>
+
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">Rules for abstract classes:</div>
+  <div class="step-row"><span class="sn">1</span><span class="st">Must use the <span class="hl">abstract</span> keyword on the class.</span></div>
+  <div class="step-row"><span class="sn">2</span><span class="st">Can have <span class="hl">both</span> abstract methods (no body) AND concrete methods (with body).</span></div>
+  <div class="step-row"><span class="sn">3</span><span class="st">Can have <span class="hl">instance variables</span> (fields like String name, int id).</span></div>
+  <div class="step-row"><span class="sn">4</span><span class="st">Can have a <span class="hl">constructor</span> — called via super() from subclass.</span></div>
+  <div class="step-row"><span class="sn">5</span><span class="st"><span class="hl">Cannot be instantiated</span> — new Shape() is a compile error.</span></div>
+  <div class="step-row"><span class="sn">6</span><span class="st">A class can extend <span class="hl">only ONE</span> abstract class (single inheritance).</span></div>
+
+  <div class="tip">When to use abstract class: when your classes are closely related and share common code. Shape, Circle, Rectangle are all related geometric shapes. It makes sense for Shape to provide the describe() method free — all shapes use it the same way.</div>
+</div>
+
+<!-- TAB 3: INTERFACE -->
+<div id="sec-iface" class="sec">
+  <div class="explain">
+    An <span class="hl">interface</span> is a pure contract. It says: <em>"if you want to be called X, you MUST be able to do these things."</em> It provides zero implementation — just a list of method signatures. Every class that implements it must write all the code.<br><br>
+    <span class="hl">The key word is UNRELATED.</span> An interface lets completely unrelated classes share a common behaviour without being in the same family tree.
+  </div>
+
+  <div class="explain" style="border-left-color:#0F6E56">
+    <span class="hl">Real world analogy:</span> Think of a <span class="hl">job description</span>. It says: "To be hired as a Chef, you must be able to: cook(), plateFood(), managekitchen()." It doesn't tell you HOW to cook. A person, a robot, or a trained monkey can all be a Chef — as long as they can do those things. The job description is the interface. Anyone who meets the requirements gets the title.
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 260" role="img">
+    <title>Interface Flyable implemented by unrelated classes: Bird, Airplane, Superman</title>
+    <desc>Flyable interface at the top with one method fly(). Three arrows point down to Bird, Airplane, and Superman — three completely unrelated classes that all implement Flyable.</desc>
+    <defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+    <g class="c-purple">
+      <rect x="215" y="20" width="250" height="72" rx="10" stroke-width="0.5"/>
+      <text class="th" x="340" y="46" text-anchor="middle" dominant-baseline="central">Flyable</text>
+      <text class="ts" x="340" y="68" text-anchor="middle" dominant-baseline="central">interface — just a contract</text>
+    </g>
+    <text class="ts" x="340" y="102" text-anchor="middle" fill="var(--color-text-secondary)">void fly();   — no code, just a promise</text>
+
+    <line x1="200" y1="92" x2="135" y2="170" stroke="#AFA9EC" stroke-width="0.5" stroke-dasharray="5 3" marker-end="url(#ar2)"/>
+    <line x1="340" y1="92" x2="340" y2="170" stroke="#AFA9EC" stroke-width="0.5" stroke-dasharray="5 3" marker-end="url(#ar2)"/>
+    <line x1="480" y1="92" x2="545" y2="170" stroke="#AFA9EC" stroke-width="0.5" stroke-dasharray="5 3" marker-end="url(#ar2)"/>
+
+    <g class="c-teal">
+      <rect x="40" y="172" width="190" height="70" rx="10" stroke-width="0.5"/>
+      <text class="th" x="135" y="198" text-anchor="middle" dominant-baseline="central">Bird</text>
+      <text class="ts" x="135" y="220" text-anchor="middle" dominant-baseline="central">flaps wings to fly</text>
+    </g>
+    <g class="c-teal">
+      <rect x="245" y="172" width="190" height="70" rx="10" stroke-width="0.5"/>
+      <text class="th" x="340" y="198" text-anchor="middle" dominant-baseline="central">Airplane</text>
+      <text class="ts" x="340" y="220" text-anchor="middle" dominant-baseline="central">uses engines to fly</text>
+    </g>
+    <g class="c-teal">
+      <rect x="450" y="172" width="190" height="70" rx="10" stroke-width="0.5"/>
+      <text class="th" x="545" y="198" text-anchor="middle" dominant-baseline="central">Superman</text>
+      <text class="ts" x="545" y="220" text-anchor="middle" dominant-baseline="central">uses superpowers to fly</text>
+    </g>
+
+    <text class="ts" x="340" y="256" text-anchor="middle" fill="var(--color-text-secondary)">All 3 are completely different — but all can be treated as Flyable</text>
+  </svg>
+
+  <div class="code"><span class="cmt">// Define the interface — just method names, no code</span>
+<span class="kw">interface</span> <span class="cls">Flyable</span> {
+    <span class="kw">void</span> fly();        <span class="cmt">// no body — just a contract</span>
+    <span class="kw">int</span> getAltitude(); <span class="cmt">// every implementer must write this</span>
+}
+
+<span class="cmt">// Three UNRELATED classes — all implement Flyable</span>
+<span class="kw">class</span> <span class="cls">Bird</span> <span class="kw">implements</span> <span class="cls">Flyable</span> {
+    <span class="kw">public void</span> fly()        { System.out.println(<span class="str">"Flapping wings!"</span>); }
+    <span class="kw">public int</span> getAltitude() { <span class="kw">return</span> 50; }
+}
+
+<span class="kw">class</span> <span class="cls">Airplane</span> <span class="kw">implements</span> <span class="cls">Flyable</span> {
+    <span class="kw">public void</span> fly()        { System.out.println(<span class="str">"Engines at full throttle!"</span>); }
+    <span class="kw">public int</span> getAltitude() { <span class="kw">return</span> 35000; }
+}
+
+<span class="cmt">// One class can implement MULTIPLE interfaces — this is the superpower</span>
+<span class="kw">interface</span> <span class="cls">Swimmable</span> { <span class="kw">void</span> swim(); }
+
+<span class="kw">class</span> <span class="cls">Duck</span> <span class="kw">implements</span> <span class="cls">Flyable</span>, <span class="cls">Swimmable</span> {
+    <span class="kw">public void</span> fly()        { System.out.println(<span class="str">"Duck flying!"</span>); }
+    <span class="kw">public int</span> getAltitude() { <span class="kw">return</span> 10; }
+    <span class="kw">public void</span> swim()       { System.out.println(<span class="str">"Duck swimming!"</span>); }
+}
+
+<span class="cmt">// The magic: one method works for ALL Flyable objects</span>
+<span class="kw">void</span> launchIntoAir(<span class="cls">Flyable</span> f) {
+    f.fly();
+    System.out.println(<span class="str">"At altitude: "</span> + f.getAltitude() + <span class="str">"ft"</span>);
+}
+
+launchIntoAir(<span class="kw">new</span> <span class="cls">Bird</span>());     <span class="cmt">// Flapping wings! At altitude: 50ft</span>
+launchIntoAir(<span class="kw">new</span> <span class="cls">Airplane</span>()); <span class="cmt">// Engines at full throttle! At altitude: 35000ft</span></div>
+
+  <div class="rule">
+    <span style="font-weight:500">The interface superpower:</span> A class can implement multiple interfaces, but only extend one class. So interfaces are how Java achieves multiple inheritance of behaviour — a Duck can be both Flyable AND Swimmable.
+  </div>
+
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem;margin-top:1rem">Rules for interfaces:</div>
+  <div class="step-row"><span class="sn">1</span><span class="st">Use the <span class="hl">interface</span> keyword, and <span class="hl">implements</span> in the class.</span></div>
+  <div class="step-row"><span class="sn">2</span><span class="st">Before Java 8: all methods are abstract (no body). Java 8+: can have <span class="hl">default</span> and <span class="hl">static</span> methods with a body.</span></div>
+  <div class="step-row"><span class="sn">3</span><span class="st"><span class="hl">No instance variables</span> — only public static final constants.</span></div>
+  <div class="step-row"><span class="sn">4</span><span class="st"><span class="hl">No constructors.</span></span></div>
+  <div class="step-row"><span class="sn">5</span><span class="st">A class can implement <span class="hl">multiple interfaces</span> — this is the big difference from abstract class.</span></div>
+  <div class="step-row"><span class="sn">6</span><span class="st">All methods in an interface are <span class="hl">implicitly public</span> — you must use public when implementing them.</span></div>
+</div>
+
+<!-- TAB 4: DIFF -->
+<div id="sec-diff" class="sec">
+  <div class="explain">
+    Both abstract class and interface achieve abstraction. But they're used for <span class="hl">different situations</span>. Here's how to think about which to use — and how to answer this in an interview.
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card" style="border-color:#AFA9EC">
+        <div class="card-title"><span class="badge bp">Abstract class</span></div>
+        <div style="font-size:13px;line-height:1.75;color:var(--color-text-primary)">
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#EEEDFE;color:#3C3489">✓</span><span class="st">Can have concrete methods (with code)</span></div>
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#EEEDFE;color:#3C3489">✓</span><span class="st">Can have instance variables</span></div>
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#EEEDFE;color:#3C3489">✓</span><span class="st">Can have constructors</span></div>
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#EEEDFE;color:#3C3489">✓</span><span class="st">Methods can be any access modifier</span></div>
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#FAECE7;color:#712B13">✗</span><span class="st">One per class (no multiple inheritance)</span></div>
+          <div class="step-row"><span class="sn" style="background:#FAECE7;color:#712B13">✗</span><span class="st">Can't be instantiated</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="border-color:#9FE1CB">
+        <div class="card-title"><span class="badge bt">Interface</span></div>
+        <div style="font-size:13px;line-height:1.75;color:var(--color-text-primary)">
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#EEEDFE;color:#3C3489">✓</span><span class="st">Pure contract — only method signatures</span></div>
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#EEEDFE;color:#3C3489">✓</span><span class="st">Multiple interfaces per class</span></div>
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#EEEDFE;color:#3C3489">✓</span><span class="st">Java 8+: default & static methods</span></div>
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#FAECE7;color:#712B13">✗</span><span class="st">No instance variables</span></div>
+          <div class="step-row" style="margin-bottom:.4rem"><span class="sn" style="background:#FAECE7;color:#712B13">✗</span><span class="st">No constructors</span></div>
+          <div class="step-row"><span class="sn" style="background:#FAECE7;color:#712B13">✗</span><span class="st">All methods implicitly public</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">How to decide which one to use — the decision rule:</div>
+
+  <div class="rule">
+    <span style="font-weight:500">Use abstract class when:</span> The classes are in the same family. They share real code. It's an IS-A relationship.<br>
+    Example: Shape → Circle, Rectangle, Triangle. All shapes. All share the describe() method. Makes sense to be one family.
+  </div>
+  <div class="tip">
+    <span style="font-weight:500">Use interface when:</span> Unrelated classes need to share a behaviour. It's a CAN-DO relationship.<br>
+    Example: Bird, Airplane, Superman can all fly — but they're completely unrelated. Use Flyable interface. A Duck can be Flyable AND Swimmable — impossible with abstract class.
+  </div>
+
+  <div class="code"><span class="cmt">// Abstract class — IS-A relationship, shared family</span>
+<span class="kw">abstract class</span> <span class="cls">Vehicle</span> {
+    <span class="kw">String</span> brand;               <span class="cmt">// shared field — all vehicles have a brand</span>
+    <span class="kw">void</span> startEngine() { ... }  <span class="cmt">// shared method — all vehicles start the same way</span>
+    <span class="kw">abstract void</span> move();       <span class="cmt">// different for car vs boat vs plane</span>
+}
+
+<span class="cmt">// Interface — CAN-DO capability, unrelated classes</span>
+<span class="kw">interface</span> <span class="cls">GPS</span> {
+    <span class="kw">void</span> getLocation();  <span class="cmt">// a Car, Phone, or Watch can all have GPS</span>
+}
+
+<span class="kw">class</span> <span class="cls">Car</span> <span class="kw">extends</span> <span class="cls">Vehicle</span> <span class="kw">implements</span> <span class="cls">GPS</span> {
+    <span class="kw">void</span> move()          { System.out.println(<span class="str">"Driving..."</span>); }
+    <span class="kw">public void</span> getLocation() { System.out.println(<span class="str">"28.6N 77.2E"</span>); }
+}
+<span class="cmt">// Car IS-A Vehicle (abstract class) AND CAN-DO GPS (interface)</span></div>
+
+  <div class="warn">
+    <span style="font-weight:500">Interview answer template:</span> "Abstract class is used for IS-A relationships among closely related classes where shared code exists. Interface is used for CAN-DO capabilities that unrelated classes can share. The key practical difference is that a class can implement multiple interfaces but extend only one abstract class."
+  </div>
+</div>
+
+<!-- TAB 5: QUIZ -->
+<div id="sec-quiz" class="sec">
+  <div style="font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:1rem">Test yourself — pick the right answer for each question.</div>
+
+  <div id="q-container"></div>
+</div>
+</div>
+
+<script>
+function sw(name){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('sec-'+name).classList.add('on');
+  const m={abs:0,abscls:1,iface:2,diff:3,quiz:4};
+  document.querySelectorAll('.tab')[m[name]].classList.add('on');
+}
+
+const qs=[
+  {
+    q:'Can you create an object directly from an abstract class?',
+    opts:['Yes, using new AbstractClass()','No, it must be subclassed first','Only if it has no abstract methods'],
+    ans:1,
+    exp:'Correct! Abstract classes cannot be instantiated. new Shape() gives a compile error. You must extend it — new Circle() — and Circle provides the implementation.'
+  },
+  {
+    q:'A class needs to be both Printable and Serializable. Which do you use?',
+    opts:['Two abstract classes','Two interfaces','One of each'],
+    ans:1,
+    exp:'Correct! A class can implement multiple interfaces. You cannot extend two abstract classes — Java only allows single inheritance for classes.'
+  },
+  {
+    q:'What keyword does a class use to implement an interface?',
+    opts:['extends','implements','inherits'],
+    ans:1,
+    exp:'Correct! extends is for classes (and interfaces inheriting from interfaces). implements is specifically for a class using an interface.'
+  },
+  {
+    q:'An interface method in Java is implicitly...',
+    opts:['private and abstract','public and abstract','protected and final'],
+    ans:1,
+    exp:'Correct! All interface methods are implicitly public and abstract (before Java 8). This is why when you implement an interface, you must write public before the method.'
+  },
+  {
+    q:'Which can have instance variables (fields)?',
+    opts:['Only interface','Only abstract class','Both'],
+    ans:1,
+    exp:'Correct! Abstract classes can have instance variables like String name or int id. Interfaces can only have public static final constants — shared, unchangeable values.'
+  },
+  {
+    q:'What is the difference between abstraction and encapsulation?',
+    opts:['They are the same thing','Abstraction hides complexity, encapsulation bundles data and controls access','Encapsulation is only for interfaces'],
+    ans:1,
+    exp:'Correct! Abstraction = hiding HOW (implementation details). Encapsulation = bundling data with methods and using private/public to control access. They work together but are different concepts.'
+  }
+];
+
+function renderQuiz(){
+  const c=document.getElementById('q-container');
+  c.innerHTML=qs.map((q,i)=>`
+    <div class="card" style="margin-bottom:.875rem">
+      <div style="font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem">${i+1}. ${q.q}</div>
+      <div id="opts-${i}">${q.opts.map((o,j)=>`<button class="quiz-btn" onclick="check(${i},${j})">${o}</button>`).join('')}</div>
+      <div class="quiz-out" id="out-${i}"></div>
+    </div>
+  `).join('');
+}
+
+function check(qi,oi){
+  const q=qs[qi];
+  const btns=document.querySelectorAll(`#opts-${qi} .quiz-btn`);
+  btns.forEach((b,j)=>{
+    b.classList.remove('correct','wrong');
+    if(j===q.ans) b.classList.add('correct');
+    else if(j===oi && oi!==q.ans) b.classList.add('wrong');
+    b.onclick=null;
+  });
+  const out=document.getElementById(`out-${qi}`);
+  out.style.color=oi===q.ans?'#085041':'#712B13';
+  out.textContent=(oi===q.ans?'Correct! ':'Wrong — ')+q.exp;
+}
+
+renderQuiz();
+</script>
