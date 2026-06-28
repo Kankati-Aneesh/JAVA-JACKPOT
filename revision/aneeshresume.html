@@ -1,0 +1,386 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.pg{padding:1rem 0;font-family:var(--font-sans)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem;border-bottom:0.5px solid var(--color-border-tertiary);padding-bottom:.75rem}
+.tab{padding:7px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer}
+.tab.on{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489;font-weight:500}
+.sec{display:none}.sec.on{display:block}
+.script-box{background:var(--color-background-secondary);border-left:4px solid #534AB7;border-radius:0 var(--border-radius-lg) var(--border-radius-lg) 0;padding:1.25rem 1.5rem;font-size:15px;line-height:1.9;color:var(--color-text-primary);margin-bottom:1rem}
+.pause{display:inline-block;background:#EEEDFE;color:#3C3489;font-size:11px;font-weight:500;padding:1px 7px;border-radius:99px;vertical-align:middle;margin:0 3px}
+.breath{display:block;text-align:center;color:#AFA9EC;font-size:12px;margin:10px 0;letter-spacing:.08em}
+.tip-box{background:#E1F5EE;border:0.5px solid #9FE1CB;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13px;color:#085041;margin-bottom:1rem}
+.step-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:.875rem}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;margin-right:10px;flex-shrink:0}
+.step-head{display:flex;align-items:center;margin-bottom:.5rem}
+.step-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.step-body{font-size:14px;line-height:1.75;color:var(--color-text-primary);padding-left:36px}
+.step-body .why{color:#534AB7;font-weight:500}
+.step-body .what{color:#085041;font-weight:500}
+.num-pill{display:inline-block;background:#FAEEDA;color:#633806;font-size:12px;font-weight:500;padding:1px 8px;border-radius:99px;margin:0 2px}
+.proj-header{font-size:16px;font-weight:500;color:var(--color-text-primary);margin:1.5rem 0 .25rem;display:flex;align-items:center;gap:8px}
+.badge{font-size:11px;padding:2px 8px;border-radius:99px;font-weight:500}
+.bp{background:#EEEDFE;color:#3C3489}
+.bt{background:#E1F5EE;color:#085041}
+.ba{background:#FAEEDA;color:#633806}
+.bc{background:#FAECE7;color:#712B13}
+.bb{background:#E6F1FB;color:#0C447C}
+.insight{background:#FAECE7;border:0.5px solid #F0997B;border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:13px;color:#712B13;margin:.75rem 0}
+.sec-title{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:.25rem}
+.sec-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem}
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.25rem 0}
+.counter{font-size:12px;color:var(--color-text-secondary);margin-bottom:.5rem}
+.timer-row{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
+.timer-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.5rem .875rem;font-size:22px;font-weight:500;color:var(--color-text-primary);min-width:64px;text-align:center}
+</style>
+
+<h2 class="sr-only">Interview scripts and project walkthroughs for Kankati Aneesh</h2>
+
+<div class="pg">
+<div class="tabs">
+  <div class="tab on" onclick="sw('tmay')"><i class="ti ti-microphone" aria-hidden="true"></i> Tell Me About Yourself</div>
+  <div class="tab" onclick="sw('p1')"><i class="ti ti-building-factory" aria-hidden="true"></i> FedEx</div>
+  <div class="tab" onclick="sw('p2')"><i class="ti ti-shopping-cart" aria-hidden="true"></i> E-Commerce</div>
+  <div class="tab" onclick="sw('p3')"><i class="ti ti-truck" aria-hidden="true"></i> Supply Chain</div>
+  <div class="tab" onclick="sw('p4')"><i class="ti ti-table" aria-hidden="true"></i> Salary Dashboard</div>
+</div>
+
+<!-- TMAY -->
+<div id="sec-tmay" class="sec on">
+  <p class="sec-title">Your "Tell me about yourself" script</p>
+  <p class="sec-sub">Read this out loud 5 times. It's exactly 2 minutes when spoken at a calm, confident pace.</p>
+
+  <div class="timer-row">
+    <div class="timer-box" id="timer">2:00</div>
+    <button onclick="startTimer()" style="font-size:13px;padding:6px 14px;">Start timer</button>
+    <button onclick="resetTimer()" style="font-size:13px;padding:6px 14px;">Reset</button>
+    <span style="font-size:13px;color:var(--color-text-secondary);">Practice reading while timing yourself</span>
+  </div>
+
+  <div class="tip-box">
+    <i class="ti ti-info-circle" aria-hidden="true" style="font-size:14px;vertical-align:-1px;margin-right:5px;"></i>
+    The <span class="pause" style="background:#EEEDFE;color:#3C3489;">pause</span> tags are NOT to be spoken — they're reminders to breathe and slow down. Speak to them like you're telling a story to a friend, not reading a script.
+  </div>
+
+  <div class="script-box">
+
+    <span style="color:var(--color-text-secondary);font-size:13px;font-weight:500;">OPENING — who you are</span><br><br>
+
+    "Good morning / afternoon. Thank you for having me.<br><br>
+
+    My name is Aneesh, and I'm a final-year Computer Science student at Amity University Rajasthan, graduating in 2026 with a CGPA of 9.05 out of 10.
+
+    <span class="pause">pause — smile</span><br><br>
+
+    <span class="breath">— — — — —</span>
+
+    <span style="color:var(--color-text-secondary);font-size:13px;font-weight:500;">INTERNSHIP — your strongest proof point</span><br><br>
+
+    Last summer, I had the opportunity to intern as a Data Analyst at FedEx Logistics in Hyderabad. That experience was really where I understood what data analytics looks like in the real world.
+
+    <span class="pause">pause</span><br><br>
+
+    I was tasked with solving a problem the operations team had — they were spending 8 hours every single week manually compiling logistics reports. So I built them an automated Labour Metrics Dashboard in Power BI, using DAX formulas and a Power Query M pipeline that refreshed over 50,000 records every day — without anyone touching it manually. The result was a 40% reduction in reporting time, saving 8 hours a week, and senior stakeholders started using it to make real operational decisions.
+
+    <span class="pause">pause — let that land</span><br><br>
+
+    <span class="breath">— — — — —</span>
+
+    <span style="color:var(--color-text-secondary);font-size:13px;font-weight:500;">PROJECTS — show range</span><br><br>
+
+    Beyond the internship, I've worked on several analytics and machine learning projects. One I'm particularly proud of is a Supply Chain Delay Prediction model — I trained a Random Forest classifier on over 180,000 records to predict late deliveries. And through feature analysis, I discovered something really counter-intuitive: First Class shipping had a 95% delay rate — which completely challenged the assumption that premium shipping means better service.
+
+    <span class="pause">pause</span><br><br>
+
+    I've also built an E-Commerce analytics pipeline in Google BigQuery, processing over 1 million raw web traffic events using SQL to extract hidden revenue metrics — and then used RFM segmentation to show that targeting just the top 27% of customers could improve marketing efficiency by 35%.
+
+    <span class="pause">pause</span><br><br>
+
+    <span class="breath">— — — — —</span>
+
+    <span style="color:var(--color-text-secondary);font-size:13px;font-weight:500;">CLOSING — connect to the role</span><br><br>
+
+    So to summarize — I'm someone who combines technical skills in Python, SQL, Power BI, and machine learning with a focus on business impact. I don't just analyze data — I ask what decision this analysis needs to support, and I make sure the output is something people can actually act on.
+
+    <span class="pause">pause — confident eye contact</span><br><br>
+
+    I'm really excited about this opportunity because I believe this role is exactly where I can bring that combination of skills and continue to grow. I'd love to learn more about the team and the problems you're working on."
+
+  </div>
+
+  <div class="tip-box" style="background:#FAEEDA;border-color:#FAC775;color:#633806;">
+    <i class="ti ti-star" aria-hidden="true" style="font-size:14px;vertical-align:-1px;margin-right:5px;"></i>
+    <strong>Three power moments in this script:</strong> (1) "8 hours every single week" — be slightly emphatic here. (2) "95% delay rate" — pause after saying it, let the surprise register. (3) The closing line — maintain steady eye contact, don't look down.
+  </div>
+</div>
+
+<!-- FEDEX -->
+<div id="sec-p1" class="sec">
+  <p class="sec-title">FedEx internship — complete walkthrough</p>
+  <p class="sec-sub">Learn this step by step. You should be able to explain it like you're walking someone through your own kitchen.</p>
+
+  <div class="tip-box">The story starts with a problem, not with the technology. Always open with: "The team had a problem — they were spending 8 hours every week doing something manually."</div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">1</span><span class="step-title">What was the situation / problem?</span></div>
+    <div class="step-body">
+      The FedEx operations team at the Hyderabad distribution hub was managing logistics data across multiple distribution hubs — tracking worker productivity, how efficiently they were using their time, how many packages were being processed, etc.<br><br>
+      <span class="what">The problem:</span> All of this data was sitting in raw files (spreadsheets, system exports). Every week, someone had to manually pull that data, clean it, combine it, and format it into a report. That was <span class="num-pill">8 hours</span> of work every single week — wasted on a repetitive task that a machine should be doing.<br><br>
+      <span class="why">Why it mattered:</span> By the time the manual report was done, the data was already old. Senior stakeholders were making decisions based on last week's numbers, not today's reality.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">2</span><span class="step-title">What was your task?</span></div>
+    <div class="step-body">
+      Your job was to eliminate that manual work completely — build a system where the data flows in, gets cleaned, and turns into a live dashboard automatically, every single day. No human involvement after setup.<br><br>
+      You also had to make sure senior stakeholders could read and trust it — so accuracy and clarity were non-negotiable.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">3</span><span class="step-title">What did you actually build? (Part 1 — the ETL pipeline)</span></div>
+    <div class="step-body">
+      <span class="what">ETL = Extract, Transform, Load.</span> This is the backbone — getting raw data into a clean, usable form.<br><br>
+      You used <strong>Power Query M</strong> (the programming language built into Power BI's data editor) to:<br><br>
+      — <strong>Extract:</strong> Connect to the raw data sources from multiple distribution hubs<br>
+      — <strong>Transform:</strong> Clean inconsistencies (different column names across hubs, missing values, date format mismatches, duplicate records)<br>
+      — <strong>Load:</strong> Structure it into a clean, unified table that Power BI could work with<br><br>
+      You then scheduled this pipeline to run automatically every day, refreshing <span class="num-pill">50,000+</span> records overnight — so when anyone opened the dashboard in the morning, they were seeing today's data, not last week's.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">4</span><span class="step-title">What did you actually build? (Part 2 — the dashboard)</span></div>
+    <div class="step-body">
+      On top of the clean data, you built the Power BI dashboard using <strong>DAX</strong> (Data Analysis Expressions) — Power BI's formula language — to calculate the KPIs:<br><br>
+      — <strong>Productivity Rate:</strong> Packages processed per worker per hour<br>
+      — <strong>Utilization %:</strong> What percentage of scheduled work hours were actually spent on productive tasks<br>
+      — <strong>Labour Efficiency:</strong> Actual output vs expected output<br><br>
+      The dashboard showed these metrics in real-time, broken down by hub, by time period, by shift. Stakeholders could filter and drill down without needing any technical knowledge.<br><br>
+      <span class="why">Why DAX?</span> Because these KPIs aren't just simple sums — Utilization %, for example, requires dividing productive hours by total hours while handling edge cases like zero values. DAX lets you write that logic once as a "measure" and it recalculates correctly no matter what filter the user applies.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">5</span><span class="step-title">What were the results?</span></div>
+    <div class="step-body">
+      — Reporting time reduced by <span class="num-pill">40%</span><br>
+      — <span class="num-pill">8 hours/week</span> saved for the operations team<br>
+      — <span class="num-pill">30%</span> reduction in data preparation time<br>
+      — <span class="num-pill">50,000+</span> records refreshed automatically every day<br>
+      — Presented directly to <strong>senior stakeholders</strong> who adopted it for operational decision-making
+    </div>
+  </div>
+
+  <div class="insight">
+    <i class="ti ti-bulb" aria-hidden="true" style="font-size:14px;vertical-align:-1px;margin-right:5px;"></i>
+    <strong>If they ask "what was the hardest part?"</strong> — Say: "The biggest challenge was that the raw data wasn't standardized across hubs. Different hubs used different column names and some had missing values. I had to write custom Power Query M transformations that were robust to these variations, and then validate the output by spot-checking the dashboard numbers against manual calculations before presenting to stakeholders."
+  </div>
+</div>
+
+<!-- ECOMMERCE -->
+<div id="sec-p2" class="sec">
+  <p class="sec-title">E-Commerce segmentation — complete walkthrough</p>
+  <p class="sec-sub">This is your most technically impressive project. Focus on the BigQuery pipeline and the RFM insight.</p>
+
+  <div class="tip-box">Open with: "This project was about answering a business question — which customers should a company spend its marketing budget on?"</div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">1</span><span class="step-title">What was the problem / goal?</span></div>
+    <div class="step-body">
+      E-commerce companies collect massive amounts of web traffic data through Google Analytics 4 (GA4) — every click, every page view, every purchase, every user action is logged as an "event". But this data is extremely messy. It's stored in Google BigQuery in a nested format — imagine a spreadsheet where one cell contains an entire mini-table inside it (that's what nested JSON arrays look like).<br><br>
+      <span class="what">The goal:</span> Extract meaningful business metrics from this messy raw data, then use those metrics to segment customers so the marketing team knows exactly who to target.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">2</span><span class="step-title">The data — what were you working with?</span></div>
+    <div class="step-body">
+      <span class="num-pill">1 million+</span> raw GA4 event logs stored in Google BigQuery.<br><br>
+      GA4 stores event parameters as nested arrays — meaning each row in the table has a column called "event_params" which contains a list of key-value pairs. For example: one event row might have event_params containing [{key: "page_title", value: "Checkout"}, {key: "item_price", value: 1499}, {key: "currency", value: "USD"}] — all packed inside a single cell.<br><br>
+      <span class="why">Why is this hard?</span> Normal SQL can't just say SELECT item_price FROM events — because item_price is buried inside that nested structure. You need to "unnest" or flatten it first.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">3</span><span class="step-title">What did you build? (The BigQuery SQL pipeline)</span></div>
+    <div class="step-body">
+      You used <strong>BigQuery SQL with CTEs and UNNEST()</strong> to solve this.<br><br>
+      <span class="what">UNNEST()</span> is a BigQuery function that takes a nested array and expands it into individual rows — flattening the structure so you can query it normally.<br><br>
+      <span class="what">CTEs (WITH clauses)</span> let you break your query into readable, named steps — like Step 1: flatten the data, Step 2: extract the metrics, Step 3: aggregate by user.<br><br>
+      Using this approach, you extracted <span class="num-pill">15+</span> hidden revenue metrics that weren't visible in the standard GA4 interface — things like: revenue per session, purchase funnel drop-off rates, product-level performance, user-level spending patterns, and multi-session attribution.<br><br>
+      <span class="why">Why BigQuery?</span> GA4's built-in reporting interface only gives you pre-built charts. BigQuery gives you raw access to every single event — so you can answer questions that GA4's UI can't answer.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">4</span><span class="step-title">What is RFM segmentation and what did you do?</span></div>
+    <div class="step-body">
+      <span class="what">RFM stands for:</span><br>
+      — <strong>R — Recency:</strong> How recently did this customer buy? (A customer who bought yesterday is more valuable than one who bought 6 months ago)<br>
+      — <strong>F — Frequency:</strong> How often do they buy? (10 purchases vs 1 purchase)<br>
+      — <strong>M — Monetary:</strong> How much do they spend in total?<br><br>
+      You scored every customer on each dimension (e.g., 1–5 score for each), then combined the scores to put customers into segments:<br><br>
+      — <strong>Champions:</strong> High R, High F, High M — your best customers, buy often, spend a lot, bought recently<br>
+      — <strong>Loyal Customers:</strong> Buy often but maybe not the highest spenders<br>
+      — <strong>At-Risk:</strong> Used to be good customers but haven't bought recently<br>
+      — <strong>Lost:</strong> Low on all three — not worth spending budget on<br><br>
+      You used <strong>K-Means clustering</strong> (a machine learning algorithm) and <strong>Scikit-Learn</strong> to automate the segmentation across all users.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">5</span><span class="step-title">What was the insight and business impact?</span></div>
+    <div class="step-body">
+      The key finding: the top <span class="num-pill">27%</span> of users (Champions + Loyal) were generating the vast majority of revenue. The bottom segments were consuming marketing budget but contributing very little in return.<br><br>
+      <strong>Business recommendation:</strong> Redirect marketing spend toward retaining and upselling the top 27% instead of broad acquisition campaigns. Estimated impact: <span class="num-pill">35%</span> improvement in marketing efficiency — meaning the same budget produces 35% better results by targeting the right people.
+    </div>
+  </div>
+
+  <div class="insight">
+    <i class="ti ti-bulb" aria-hidden="true" style="font-size:14px;vertical-align:-1px;margin-right:5px;"></i>
+    <strong>If they ask "what is K-Means clustering?"</strong> — Say: "K-Means is an unsupervised machine learning algorithm that groups data points into K clusters based on similarity. I used it here to automatically group customers by their RFM scores — instead of manually setting thresholds, the algorithm found the natural groupings in the data."
+  </div>
+</div>
+
+<!-- SUPPLY CHAIN -->
+<div id="sec-p3" class="sec">
+  <p class="sec-title">Supply chain delay prediction — complete walkthrough</p>
+  <p class="sec-sub">This is your most memorable project because of the counter-intuitive finding. Lead with the surprise, not the accuracy.</p>
+
+  <div class="tip-box">Open with: "I wanted to answer one question — can we predict which shipments will be late before they're late? Because catching delays in advance means you can do something about them."</div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">1</span><span class="step-title">What was the problem / goal?</span></div>
+    <div class="step-body">
+      Late deliveries are expensive — for the customer (broken trust), for the company (refunds, complaints), and for operations (reactive firefighting). If you could predict which shipments are at risk of being late <em>before</em> they're late, you could change the routing, prioritize them, or set better expectations.<br><br>
+      <span class="what">Goal:</span> Build a machine learning model that takes shipment data as input and predicts: will this delivery be late or on-time?
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">2</span><span class="step-title">The data</span></div>
+    <div class="step-body">
+      <span class="num-pill">180,519</span> supply chain records. Each record had information like: shipping mode (First Class, Second Class, Standard, Same Day), product category, order quantity, customer location, warehouse location, order date, promised delivery date, actual delivery date, and whether it was late or not.<br><br>
+      The target variable (what you're predicting) was a binary label: <strong>Late = 1, On-Time = 0</strong>.<br><br>
+      You did EDA (Exploratory Data Analysis) first using Python, Pandas, Seaborn, and Matplotlib — visualizing distributions, checking for nulls, looking at class balance, and plotting relationships between features.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">3</span><span class="step-title">Why Random Forest? (This question WILL be asked)</span></div>
+    <div class="step-body">
+      Random Forest is an ensemble method — it builds many decision trees on random subsets of data, then combines their votes. You chose it because:<br><br>
+      — It handles <strong>mixed data types</strong> naturally (your data had both categorical columns like shipping mode and numerical columns like quantity)<br>
+      — It gives you <strong>feature importance scores</strong> — you can see which variables the model found most useful for predicting delays. This was critical for generating business insights, not just predictions.<br>
+      — It's <strong>robust to outliers</strong> and doesn't need feature scaling (no need to normalize data)<br>
+      — It <strong>reduces overfitting</strong> compared to a single decision tree, because many trees averaging out is more stable than one tree memorizing the training data
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">4</span><span class="step-title">What did you build and what were the results?</span></div>
+    <div class="step-body">
+      You split the data into training and test sets, trained a <strong>Random Forest Classifier</strong> using Scikit-Learn, and achieved <span class="num-pill">70% accuracy</span> on the test set.<br><br>
+      Then you used <code>model.feature_importances_</code> to rank which variables mattered most for predicting delays. <strong>Shipping mode came out as the strongest predictor</strong> by far — more than location, product type, or order size.<br><br>
+      So you drilled in and looked at delay rates per shipping mode.<br><br>
+      <span class="why">That's when you found it.</span>
+    </div>
+  </div>
+
+  <div class="insight" style="font-size:14px;line-height:1.8;">
+    <i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px;vertical-align:-1px;margin-right:5px;"></i>
+    <strong>The counter-intuitive finding:</strong> First Class shipping — the most expensive, premium option — had a <span class="num-pill" style="background:#FAECE7;color:#712B13;">95% delay rate</span>. This was the complete opposite of what you'd expect. Customers paying the most for the fastest delivery were the most likely to receive it late. This challenged a fundamental assumption about the business — that premium = reliable. The root cause could be over-promising on SLAs, routing inefficiencies, or capacity constraints during peak periods. This finding alone makes the project actionable and memorable.
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">5</span><span class="step-title">What's the business impact?</span></div>
+    <div class="step-body">
+      If deployed in a live system, the model could flag high-risk shipments at the time of order placement — before anything goes wrong. That allows the operations team to:<br><br>
+      — Re-route First Class shipments to more reliable carriers or paths<br>
+      — Proactively communicate delays to customers before they complain<br>
+      — Adjust SLA commitments for First Class in peak periods<br><br>
+      Estimated impact: potential <span class="num-pill">20%</span> reduction in late deliveries if deployed in a live logistics pipeline.
+    </div>
+  </div>
+</div>
+
+<!-- SALARY DASHBOARD -->
+<div id="sec-p4" class="sec">
+  <p class="sec-title">Global salary dashboard — complete walkthrough</p>
+  <p class="sec-sub">This one is simpler technically — but the business thinking behind it is strong. Lead with the user experience decision.</p>
+
+  <div class="tip-box">Open with: "I chose Excel for this deliberately — not because I couldn't use Python, but because Excel was the right tool for the audience."</div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">1</span><span class="step-title">What was the problem / goal?</span></div>
+    <div class="step-body">
+      HR teams and job seekers waste a lot of time researching salary benchmarks — manually searching job boards, cross-referencing countries, filtering by role and experience level. There was no single place to instantly see "what does a Senior Data Analyst earn in Germany vs India vs USA?"<br><br>
+      <span class="what">Goal:</span> Build a dashboard that answers salary benchmarking questions in one click, with no technical expertise required.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">2</span><span class="step-title">The data</span></div>
+    <div class="step-body">
+      <span class="num-pill">32,000+</span> job records across <span class="num-pill">50+</span> countries. Each record had: job title, company size, experience level (entry/mid/senior/executive), employment type, employee residence, company location, remote ratio, and salary in USD.<br><br>
+      The challenge was that 32,000 rows across 50 countries means the data is inherently multi-dimensional — you need to filter multiple variables simultaneously to get a meaningful answer.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">3</span><span class="step-title">Why Excel — not Python or Power BI?</span></div>
+    <div class="step-body">
+      This is the most important question for this project. Your answer shows maturity.<br><br>
+      <span class="why">The audience was HR teams and hiring managers — people who live in Excel.</span> A Python script requires someone to re-run it. A Power BI dashboard requires a license and setup. But an Excel file? Anyone can open it, filter it, and share it — zero friction.<br><br>
+      The goal was <strong>adoption</strong> — getting people to actually use the tool. Excel was the best tool for that goal.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">4</span><span class="step-title">What did you build technically?</span></div>
+    <div class="step-body">
+      — <strong>Array formulas:</strong> Excel formulas that calculate across entire ranges simultaneously — used to compute average salaries for filtered subsets without pivot tables<br>
+      — <strong>Slicers:</strong> Visual filter buttons connected to the data — click "Senior" and "Germany" and everything updates instantly<br>
+      — <strong>Data Validation:</strong> Dropdown menus for Role, Country, and Experience Level so users can't enter invalid filters<br>
+      — <strong>Boolean logic:</strong> Used inside array formulas to apply multiple conditions at once (e.g., where role = "Data Analyst" AND country = "India" AND level = "Senior")<br>
+      — <strong>Statistical analysis:</strong> Min, max, median, percentiles per segment — so users could see not just the average salary but the full range
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head"><span class="step-num">5</span><span class="step-title">What was the impact?</span></div>
+    <div class="step-body">
+      The dashboard reduced salary benchmarking research time by <span class="num-pill">70%</span> — replacing manual lookups that took 30+ minutes with an instant filtered view. Stakeholders could make compensation decisions in minutes instead of hours, with data-backed numbers instead of guesswork.
+    </div>
+  </div>
+
+  <div class="insight">
+    <i class="ti ti-bulb" aria-hidden="true" style="font-size:14px;vertical-align:-1px;margin-right:5px;"></i>
+    <strong>If they say "this seems simple compared to your other projects"</strong> — Say: "That's exactly the point. The FedEx dashboard and BigQuery pipeline were complex because the problems required complexity. This project required simplicity — the problem was that HR teams needed something they'd actually open and use every day, not something technically impressive that sits unused. Knowing when to use Excel vs Python vs Power BI is itself a skill."
+  </div>
+</div>
+</div>
+
+<script>
+let timerInt=null,secs=120,running=false;
+function fmt(s){return Math.floor(s/60)+':'+(s%60<10?'0':'')+s%60}
+function startTimer(){
+  if(running){clearInterval(timerInt);running=false;document.querySelector('[onclick="startTimer()"]').textContent='Start timer';return}
+  if(secs<=0)secs=120;
+  running=true;document.querySelector('[onclick="startTimer()"]').textContent='Pause';
+  timerInt=setInterval(()=>{
+    secs--;document.getElementById('timer').textContent=fmt(secs);
+    if(secs<=0){clearInterval(timerInt);running=false;document.querySelector('[onclick="startTimer()"]').textContent='Start timer';document.getElementById('timer').textContent='Done!'}
+  },1000)
+}
+function resetTimer(){clearInterval(timerInt);running=false;secs=120;document.getElementById('timer').textContent='2:00';document.querySelector('[onclick="startTimer()"]').textContent='Start timer'}
+function sw(name){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('sec-'+name).classList.add('on');
+  const map={tmay:0,p1:1,p2:2,p3:3,p4:4};
+  document.querySelectorAll('.tab')[map[name]].classList.add('on');
+}
+</script>
